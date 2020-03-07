@@ -6,18 +6,18 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 
 let config = {
-	watch: true,
+	watch: false,
 	devtool: 'source-map',
 	mode: 'development',
 	entry: {
 		main: [
-			'babel-polyfill',
-			'./src/styles/sass/index.scss',
-			'./src/gameSrcJs/index.jsx'
+			'@babel/polyfill',
+			'./scss/index.scss',
+		    './js/index.jsx'
 		]
 	},
 	output: {
-		path: __dirname + '/public/resources/js/',
+		path: __dirname + '/../../public/resources/js/',
 		filename: 'bundle.js'
 	},
 	module: {
@@ -33,12 +33,8 @@ let config = {
 			}, {
 				loader: 'postcss-loader',
 				options: {
-					plugins: [
-						autoprefixer({
-							browsers:['ie >= 8', 'last 4 version']
-						})
-					],
-					sourceMap: true
+					plugins: () => [autoprefixer()],
+				    sourceMap: true
 				}
 			}, {
 				loader: 'sass-loader', options: {
@@ -52,10 +48,10 @@ let config = {
 				loader: 'babel-loader',
 				options: {
 					presets: [
-						'env',
-						'react'
+						'@babel/preset-env',
+						'@babel/preset-react'
 					],
-					plugins: ['transform-class-properties']
+					plugins: ['@babel/plugin-proposal-class-properties']
 				}
 			}
 		}, {

@@ -1,39 +1,36 @@
 {
-	"name": "bestHack",
-	"version": "0.0.1",
-	"description": "best",
-	"main": "index.js",
-	"dependencies": {
-		"express": "latest"
-	},
-	"devDependencies": {
-        "@babel/cli": "^7.0.0",
-        "@babel/core": "^7.0.0",
-        "@babel/plugin-proposal-class-properties": "^7.0.0",
-        "@babel/polyfill": "^7.0.0",
-        "@babel/preset-env": "^7.0.0",
-        "@babel/preset-react": "^7.0.0",
-        "autoprefixer": "^9.1.5",
-        "babel-loader": "^8.0.2",
-        "css-loader": "^1.0.0",
-        "json-loader": "^0.5.7",
-        "node-sass": "^4.9.3",
-        "postcss-loader": "^3.0.0",
-        "react": "^16.5.0",
-        "react-dom": "^16.5.0",
-        "react-redux": "^5.0.7",
-        "redux": "^4.0.0",
-        "reset-css": "^4.0.1",
-        "sass-loader": "^7.1.0",
-        "style-loader": "^0.23.0",
-        "webpack": "^4.17.2",
-        "webpack-cli": "^3.1.0"
-	},
-	"repository": "git+https://github.com/com:lokehoke/bestHack.git",
-	"author": "lokehoke",
-	"license": "GPL-3.0+",
-	"bugs": {
-		"url": "https://github.com/lokehoke/bestHack/issues"
-	},
-	"homepage": "https://github.com/lokehoke/bestHack#readme"
+ "name": "bestHackFront",
+ "version": "0.0.1",
+ "description": "best",
+ "main": "index.js",
+ "devDependencies": {
+  "@babel/cli": "^7.0.x",
+  "@babel/core": "^7.0.x",
+  "@babel/plugin-proposal-class-properties": "7.0.x",
+  "@babel/polyfill": "^7.0.x",
+  "@babel/preset-env": "^7.0.x",
+  "@babel/preset-react": "^7.0.x",
+  "autoprefixer": "^9.1.x",
+  "babel-loader": "^8.0.x",
+  "css-loader": "^1.0.x",
+  "json-loader": "^0.5.x",
+  "node-sass": "^4.13.x",
+  "postcss-loader": "^3.0.x",
+  "react": "^16.5.x",
+  "react-dom": "^16.5.x",
+  "react-redux": "^5.0.x",
+  "redux": "^4.0.x",
+  "reset-css": "^4.0.x",
+  "sass-loader": "^7.1.x",
+  "style-loader": "^0.23.x",
+  "webpack": "^4.17.x",
+  "webpack-cli": "^3.1.x"
+ },
+ "repository": "git+https://github.com/com:lokehoke/bestHack.git",
+ "author": "lokehoke",
+ "license": "GPL-3.0+",
+ "bugs": {
+  "url": "https://github.com/lokehoke/bestHack/issues"
+ },
+ "homepage": "https://github.com/lokehoke/bestHack#readme"
 }
