@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 MAINTAINER lokehoke
-
+WORKDIR /server/
 
 RUN apt update
 RUN apt dist-upgrade
@@ -11,9 +11,8 @@ RUN apt install -y nodejs
 RUN npm install -g yarn
 
 
-COPY package.json /server
-RUN yarn install
 COPY . /server
+RUN yarn install
 
 EXPOSE 80
 CMD node index.js

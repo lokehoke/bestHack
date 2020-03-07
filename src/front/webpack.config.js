@@ -70,7 +70,7 @@ let config = {
 		}]
 	},
 	resolve: {
-		modules: ['node_modules'] 
+		modules: ['node_modules']
 	},
 	plugins: [
 		new Webpack.NoEmitOnErrorsPlugin()
