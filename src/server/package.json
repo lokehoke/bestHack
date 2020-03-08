@@ -4,7 +4,9 @@
 	"description": "best",
 	"main": "index.js",
 	"dependencies": {
+		"config": "^3.3.0",
 		"cookie-parser": "^1.4.4",
+		"cors": "^2.8.5",
 		"express": "latest"
 	},
 	"repository": "git+https://github.com/com:lokehoke/bestHack.git",

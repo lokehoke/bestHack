@@ -1,10 +1,10 @@
-process.env.NODE_ENV = "development";
+const env = process.env.NODE_ENV || "development";
 
+const config = require('config');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const cors = require('cors');
+const serverConfig = { port: 3000 };
 
 const app = express();
 
@@ -12,7 +12,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static('../../public'));
+//Enable AJAX support
+app.use(cors());
 
+//Main route
+const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
-app.listen(80, () => console.log('The server is started!'));
+process.on('uncaughtException', (err) => {
+    //close file descriptors
+    //close db connections and so on
+    console.error(err);
+    process.exit(1);});
+
+process.on('SIGTERM', (err) => {
+    app.close(() => {
+        console.error(err);
+    });
+});
+
+app.listen(serverConfig.port, () => { console.log(`The server is started on the port: ${serverConfig.port}!`)});
