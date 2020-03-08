@@ -10,7 +10,6 @@ RUN apt install -y nodejs
 
 RUN npm install -g yarn
 
-
 COPY . /server
 RUN yarn install
 
