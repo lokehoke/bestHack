@@ -2,18 +2,12 @@ FROM node:latest
 MAINTAINER lokehoke
 WORKDIR /server/
 
-#RUN apt update
-#RUN apt dist-upgrade
-#RUN apt install curl -y
-#RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
-#RUN apt install -y nodejs
 
-#RUN npm install -g yarn
-
-COPY package.json /server
+COPY src/server/package.json /server
 RUN yarn install
 
-COPY . /server
+COPY src/server  /server
+COPY public /server/public
 
-EXPOSE 80
+EXPOSE 3000
 CMD ["node", "index.js"]
