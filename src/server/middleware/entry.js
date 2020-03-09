@@ -1,3 +1,4 @@
+const path = require('path');
 
 //If no cookies we redirect client to /register page
 function cookie_check(req, res, next) {
@@ -11,7 +12,8 @@ function cookie_check(req, res, next) {
 }
 
 function send_index(req, res) {
-    res.sendFile('index.html', { root: '../../public' });
+    console.log(path.join(__dirname, 'public'));
+    res.sendFile('index.html', { root: path.join(__dirname, '../public') });
 }
 
 module.exports = {
