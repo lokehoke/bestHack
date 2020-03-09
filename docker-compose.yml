@@ -1,0 +1,19 @@
+version: "3"
+services:
+    db:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: 123
+        container_name: "db"
+        ports:
+            - "5433:5432"
+    server:
+        build:
+            context: .
+            dockerfile: src/server/Dockerfile
+        ports:
+            - "3000:3000"
+        container_name: "server"
+        environment:
+            NODE_MODE: "prod"

@@ -12,7 +12,6 @@ function cookie_check(req, res, next) {
 }
 
 function send_index(req, res) {
-    console.log(path.join(__dirname, 'public'));
     res.sendFile('index.html', { root: path.join(__dirname, '../public') });
 }
 
