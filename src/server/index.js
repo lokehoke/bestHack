@@ -19,11 +19,14 @@ app.use(express.static('public', exp_stat));
 //Enable AJAX support
 app.use(cors());
 
-//Main route
+//Routes classes
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-app.use('/', indexRouter);
-app.use('/auth', authRouter);
+
+const auth = AuthInitialize(config.db);
+
+app.use('/', indexRouter(auth));
+app.use('/auth', authRouter(auth));
 
 process.on('uncaughtException', (err) => {
     //close file descriptors

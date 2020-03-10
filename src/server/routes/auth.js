@@ -10,4 +10,9 @@ router.get('/auth',
     send_index,
 );
 
+router.post('/auth',
+    check_auth_data,
+    auth_err_handler
+    );
+
 module.exports = router;
