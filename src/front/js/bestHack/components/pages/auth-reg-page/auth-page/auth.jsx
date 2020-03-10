@@ -1,4 +1,7 @@
+'use strict';
 import React from 'react';
+import { connect } from 'react-redux';
+import { setPath } from '../../../../actions/actions.js';
 
 class Auth extends React.Component {
     constructor(props){
@@ -23,7 +26,7 @@ class Auth extends React.Component {
                     
                     <button type="submit" className="auth-btn btn btn-primary">Войти</button>
 
-                    <div className="reg-link">или зарегистрируйтесь ></div>
+                    <div className="reg-link" onClick={this.props.setPath}>или зарегистрируйтесь ></div>
                 </form>
 
             </div>
@@ -31,4 +34,11 @@ class Auth extends React.Component {
     };
 };
 
-export default Auth;
+const mapDispatchToProps = dispatch => {
+    return {
+        setPath: () => dispatch(setPath('/register'))
+    };
+};
+
+
+export default connect(null, mapDispatchToProps)(Auth);

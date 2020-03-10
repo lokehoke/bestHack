@@ -1,17 +1,17 @@
-const reducer = (state = 0, action) => {
+'use strict';
+const getReducer = (settings) => (state = settings, action) => {
+  
+  switch(action.type) {
+    case 'SET_PATH':
+      return Object.assign({}, state, {
+        currentPath: action.newPath,
+      });
+    default:
+      return state;
+  }
 
-    switch (action.type) {
-     case 'INC':
-       return state + 1;
-     case 'DEC':
-       return state - 1; 
-     case 'RND':
-       return state + action.payload;// + Math.floor(Math.random()*10); - мы не можем это писать здесь, 
-     default:                        // т.к. reducer должна быть чистой функцией   
-       return state;
-    } 
-     return 0;
-   };
+
+};
         
 
-export default reducer;
+export default getReducer;
