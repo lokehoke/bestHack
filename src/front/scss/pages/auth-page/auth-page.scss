@@ -1,1 +1,9 @@
-@import 'pages/auth-page/img.scss';
+@import 'pages/auth-page/img-block.scss';
+@import 'pages/auth-page/auth-block.scss';
+
+.auth-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+

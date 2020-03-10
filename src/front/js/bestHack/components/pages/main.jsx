@@ -1,8 +1,7 @@
 import React from 'react';
 
-import ImgBlock from './auth-page/img-block.jsx';
-import AuthBlock from './auth-page/auth-block.jsx';
-
+import AuthPage from './auth-reg-page/auth-page/auth-page.jsx';
+import RegPage from './auth-reg-page/reg-page/reg-page.jsx';
 
 class Main extends React.Component {
     constructor(props){
@@ -12,14 +11,11 @@ class Main extends React.Component {
     render() {
         return (
             <div className="main">
-                <ImgBlock />
-                <AuthBlock />
+                <AuthPage />
             </div>
         );
     };
 };
-
-
 
 
 export default Main;

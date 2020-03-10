@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Auth extends React.Component {
+class Reg extends React.Component {
     constructor(props){
         super(props);
     };
@@ -10,7 +10,7 @@ class Auth extends React.Component {
         return(
             <div className="auth">
 
-                <form>
+                <form className="auth-form">
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Логин:</label>
                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
@@ -20,8 +20,14 @@ class Auth extends React.Component {
                         <label htmlFor="exampleInputPassword1">Пароль:</label>
                         <input type="password" className="form-control" id="exampleInputPassword1"></input>
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Повторите пароль:</label>
+                        <input type="password" className="form-control" id="exampleInputPassword1"></input>
+                    </div>
                     
-                    <button type="submit" className="btn btn-primary">Войти</button>
+                    <button type="submit" className="auth-btn btn btn-primary">Зарегистрироваться</button>
+
                 </form>
 
             </div>
@@ -29,4 +35,4 @@ class Auth extends React.Component {
     };
 };
 
-export default Auth;
+export default Reg;

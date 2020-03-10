@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Descr from './descr.jsx';
+import Descr from '../descr.jsx';
 import Auth from './auth.jsx';
 
 class AuthBlock extends React.Component {
@@ -10,13 +10,15 @@ class AuthBlock extends React.Component {
 
     render() {
         return (
-            <div className="auth-block col-5">
-                <Descr />
-                <Auth />
+            <div className="col-5">
+                <div className="auth-block">
+                    <Descr />
+                    <Auth />
+                </div>
             </div>
             
-        )
-    }
+        );
+    };
 };
 
 export default AuthBlock;
