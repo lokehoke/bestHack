@@ -12,6 +12,7 @@
   "@babel/preset-react": "^7.0.x",
   "autoprefixer": "^9.1.x",
   "babel-loader": "^8.0.x",
+  "bootstrap": "^4.4.1",
   "css-loader": "^1.0.x",
   "json-loader": "^0.5.x",
   "node-sass": "^4.13.x",

@@ -1,6 +1,7 @@
 'use strict';
+import BestHack from './bestHack/bestHack.jsx';
 
-console.log("hi");
 
-// const BestHack = import("bestHack/bestHack.jsx");
-// const bestHack = new BestHack('#root');
+//const BestHack = require("./bestHack/bestHack.jsx");
+const bestHack = new BestHack('#root');
+
