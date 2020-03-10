@@ -2,18 +2,20 @@
 
 const fs = require('fs');
 
-module.exports = class JavaCompiler {
-    constructor(code, errF, outF) {
-        this._code     = code;
-        this._errF     = errF;
-        this._outF     = outF;
-        this._child    = null;
-        this._data     = [];
-        this._err      = [];
-        this._filename = '';
+class JavaCompiler {
+    constructor(errF, outF) {
+        this._code      = '';
+        this._errF      = errF;
+        this._outF      = outF;
+        this._child     = null;
+        this._data      = [];
+        this._err       = [];
+        this._filename  = '';
+        this._className = '';
     }
 
-    compile() {
+    compile(code) {
+        this._code      = ` ${code} `;
         this._prepare(this._code);
         this._child = require('child_process').spawn('java', [this._filename]);
 
@@ -35,8 +37,52 @@ module.exports = class JavaCompiler {
     }
 
     _prepare(code) {
-        const base = fs.readFileSync('/server/java/chunk/base.java', 'utf8');
-        const main = fs.readFileSync('/server/java/chunk/main.java', 'utf8');
-        fs.writeFileSync(this._filename = `/server/java/temp/${Date.now()}.java`, base + code + main);
+        const base = fs.readFileSync('chunk/base.java', 'utf8');
+        const main = fs.readFileSync('chunk/main.java', 'utf8');
+        this._defClassName();
+        const test = this._getTest();
+        this._filename = `temp/${Date.now()}.java`;
+        fs.writeFileSync(this._filename, ` ${main} ${test} }} ${base} ${code} `);
     }
+
+    _defClassName() {
+        let reg = new RegExp('\\sclass\\s');
+        let arr = reg.exec(this._code);
+        let {index} = arr;
+        index += 1;
+
+        while(this._code[index] != ' ') {
+            ++index;
+        }
+
+        while (this._code[index] == ' ') {
+            ++index;
+        }
+
+        let end = index;
+        while (this._code[end] != ' ') {
+            ++end;
+        }
+
+        this._className = this._code.substr(index, end - index);
+    }
+
+    _getTest() {
+        return ``;
+    }
+
 }
+
+if (require.main === module) {
+    const java = new JavaCompiler((code, arr) => {
+        console.log(code);
+        console.log(arr);
+    }, arr => {
+        console.log(arr);
+    });
+
+    const code = fs.readFileSync('test/1.java', 'utf8');
+    java.compile(code);
+}
+
+module.exports = JavaCompiler;

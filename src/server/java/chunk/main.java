@@ -1,5 +1,1 @@
-class Program {
-    public static void main(String args[]) {
-        //test of algo
-    }
-}
+class Program {  public static void main(String args[]) {
