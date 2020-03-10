@@ -13,8 +13,8 @@
 
 .auth {
     width: 397px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 19px;
     background-color: #fff;
     border-radius: 15px;
     margin-top: 60px;
@@ -41,4 +41,5 @@
 .reg-link:hover {
     color: $active-btn;
     cursor: pointer;
+    text-decoration: underline;
 }
