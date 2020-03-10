@@ -1,0 +1,44 @@
+.auth-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-descr {
+    width: 512px;
+    height: 128px;
+    font-size: 27px;
+    margin-top: 50px;
+}
+
+.auth {
+    width: 397px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-form{
+    width: 90%;
+}
+
+.auth-btn {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.reg-link {
+    margin-top: 10px;
+    text-align: center;
+    color: $btn;
+}
+
+.reg-link:hover {
+    color: $active-btn;
+    cursor: pointer;
+}

@@ -10,7 +10,7 @@ class Auth extends React.Component {
         return(
             <div className="auth">
 
-                <form>
+                <form className="auth-form">
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Логин:</label>
                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
@@ -21,7 +21,9 @@ class Auth extends React.Component {
                         <input type="password" className="form-control" id="exampleInputPassword1"></input>
                     </div>
                     
-                    <button type="submit" className="btn btn-primary">Войти</button>
+                    <button type="submit" className="auth-btn btn btn-primary">Войти</button>
+
+                    <div className="reg-link">или зарегистрируйтесь ></div>
                 </form>
 
             </div>
