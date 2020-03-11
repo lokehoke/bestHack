@@ -4,10 +4,13 @@
 	"description": "best",
 	"main": "index.js",
 	"dependencies": {
+		"axios": "^0.19.2",
 		"config": "^3.3.0",
 		"cookie-parser": "^1.4.4",
 		"cors": "^2.8.5",
-		"express": "latest"
+		"express": "latest",
+		"mz": "^2.7.0",
+		"pg": "^7.18.2"
 	},
 	"repository": "git+https://github.com/com:lokehoke/bestHack.git",
 	"author": "lokehoke",

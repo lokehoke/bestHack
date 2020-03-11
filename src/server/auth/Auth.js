@@ -1,3 +1,4 @@
+'use strict';
 
 class Auth {
     /**
@@ -14,13 +15,13 @@ class Auth {
      * @returns {Promise<void>} - returns if the authorization success with `cookie`
      */
     async as_isCookieValidAuth(cookie) {
-        const login =  cookie.user;
+        const login = cookie.user;
         if (!login) {
             throw new Error('Cookie is invalid!');
         }
         else{
           try{
-              return await _as_DBUserCheck(login);
+              return await as_DBUserCheck(login);
           }
           catch(e){
               console.error(e);
@@ -35,11 +36,14 @@ class Auth {
      * @returns {Promise<boolean>} The result of login match for this user.
      * @private
      */
-    async _as_DBUserMatch(login){
+    async _as_DBUserMatch(login) {
         try {
-            const user_info = await this.db._as_getUser(login);
+            const user_info = await this.db.as_getUser(login);
             return login === user_info.login;
+        } catch (e) {
+            throw e;
         }
-        catch(e){ throw e; }
     }
 }
+
+module.exports = Auth;

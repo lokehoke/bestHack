@@ -1,12 +1,22 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
-const path = require('path');
+const config = require('config');
+const authInitialize = require('../authInitialize');
 
-const { cookie_check, send_index } = require('../middleware/entry');
+const AuthMiddleware = require('../middleware/entry');
 
-router.get('/',
-    cookie_check,
-    send_index,
-);
+//export async IIFE
+module.exports = () => (async function() {
+    //Initialize main entry middleware
+    const auth = await authInitialize(config.db);
+    let middlewares = new AuthMiddleware(auth);
 
-module.exports = router;
+    router.get('/',
+        middlewares.as_cookieCheck.bind(middlewares),
+        AuthMiddleware.sendIndex,
+    );
+
+    return {router, middlewares};
+})();

@@ -11,6 +11,7 @@
   "@babel/preset-env": "^7.0.x",
   "@babel/preset-react": "^7.0.x",
   "autoprefixer": "^9.1.x",
+  "axios": "^0.19.2",
   "babel-loader": "^8.0.x",
   "css-loader": "^1.0.x",
   "json-loader": "^0.5.x",

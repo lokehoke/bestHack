@@ -1,18 +1,33 @@
-const router = require('./index');
-const path = require('path');
+'use strict';
 
-const { cookie_check, send_index } = require('../middleware/entry');
+const AuthMiddleware = require('../middleware/entry');
 
-//cookie is valid -> /main
-//has no cookie -> send index
-router.get('/auth',
-    cookie_check,
-    send_index,
-);
+//Get the same router and middleware object as in index
+module.exports = (index) => (async function(){
+    const { middlewares, router } = index;
 
-router.post('/auth',
-    check_auth_data,
-    auth_err_handler
+    //cookie is valid -> /main
+    //has no cookie -> send index
+    router.get('/auth',
+        middlewares.as_cookieCheck.bind(middlewares),
+        AuthMiddleware.sendIndex,
     );
 
-module.exports = router;
+    //post is valid -> send ok
+    //invalid send error
+    router.post('/auth',
+        middlewares.as_checkAuthData.bind(middlewares),
+        AuthMiddleware.sendOk,
+    );
+
+    //Error handler
+    router.use((err, req, res, next) => {
+        console.log(`Error: ${err.message} on data ${JSON.stringify(req.body)}`);
+        res.status(400).json({ error: err.message });
+    });
+
+    return index;
+})();
+
+
+
