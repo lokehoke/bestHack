@@ -11,4 +11,4 @@ COPY src/server  /server
 COPY public /server/public
 
 EXPOSE 3000
-CMD ["node", "index.js"]
+CMD sleep 5; node index.js

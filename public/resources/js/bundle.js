@@ -273,7 +273,8 @@ var settings = __webpack_require__(/*! ./settings/defaultSettings.json */ "./js/
 
 
 var reducer = Object(_reducer_reducer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(settings);
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(reducer); //const serverFetch = ServerFetch(store);
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(reducer);
+var serverFetch = new _ajax_serverFetch_js__WEBPACK_IMPORTED_MODULE_6__["default"](store);
 
 var BestHack = function BestHack(selector) {
   _classCallCheck(this, BestHack);

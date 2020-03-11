@@ -8,7 +8,7 @@
     "user": "postgres",
     "host": "localhost",
     "database": "postgres",
-    "password": "seregamw1"
+    "password": 123
   },
   "secretKey": "b3W6l0"
 }
