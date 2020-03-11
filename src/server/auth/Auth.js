@@ -14,18 +14,30 @@ class Auth {
      * @param cookie - express.req.signedCookies object
      * @returns {Promise<void>} - returns if the authorization success with `cookie`
      */
-    async as_isCookieValidAuth(cookie) {
-        const login = cookie.user;
-        if (!login) {
+    async as_CookieAuth(cookie) {
+        const cookieUser = cookie['user'];
+        if (!cookieUser) {
             throw new Error('Cookie is invalid!');
         }
         else{
           try{
-              return await this.db.as_DBUserMatch(login);
+              const user_info = await this.db.as_getUser(cookie['user']);
+              if(!user_info){
+                  return undefined;
+              }
+              else if(user_info.email === cookie['user']){
+                  if(user_info.is_blocked || user_info.is_deleted){
+                      return undefined;
+                  }
+                  return (user_info.role === 1 ? 'admin' : 'user');
+              }
+              else{
+                  return undefined;
+              }
           }
           catch(e){
-              console.error(e);
-              return false;
+              console.log(e);
+              return undefined;
           }
         }
     }
