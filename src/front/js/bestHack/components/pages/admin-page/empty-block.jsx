@@ -9,9 +9,9 @@ class EmptyBlock extends React.Component {
     render() {
         return (
             <div className="col-9">
-                <div className="empty-block">
+                
                     <div className="choose">Выберите пользователя</div>
-                </div>
+                
             </div>
         )
     }

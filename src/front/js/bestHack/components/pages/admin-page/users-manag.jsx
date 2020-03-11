@@ -11,7 +11,7 @@ class UsersManag extends React.Component {
     render(){
         return (
             <div className="col-3">
-                <div className="users">
+                <div className="users-manag">
                     <UsersListHeader />
                     <UsersList />
                 </div>

@@ -8,14 +8,14 @@ class User extends React.Component {
 
     render() {
         return (
-            <div className="user">
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                        <img src="resources/img/pointer.png" alt="efpve"/>
-                        <div className="user-title">User1</div>
-                    </li>
-                </ul>
-            </div>
+
+            <ul className="user-item list-group list-group-flush">
+                <li className="list-group-item">
+                    <img className="pointer" src="resources/img/pointer.png" alt="efpve"/>
+                    <div className="user-title">Biba Boba</div>
+                </li>
+            </ul>
+
         )
     }
 };

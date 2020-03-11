@@ -10,7 +10,10 @@ class UsersList extends React.Component {
     render() {
         return (
             <div className="users-list">
-                <User />
+                <div className="user">
+                    <User />
+                    <User />
+                </div>
             </div>
         )
     }
