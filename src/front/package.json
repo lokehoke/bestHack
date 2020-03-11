@@ -11,6 +11,7 @@
   "@babel/preset-env": "^7.0.x",
   "@babel/preset-react": "^7.0.x",
   "autoprefixer": "^9.1.x",
+  "axios": "^0.19.2",
   "babel-loader": "^8.0.x",
   "bootstrap": "^4.4.1",
   "css-loader": "^1.0.x",
@@ -33,5 +34,8 @@
  "bugs": {
   "url": "https://github.com/lokehoke/bestHack/issues"
  },
- "homepage": "https://github.com/lokehoke/bestHack#readme"
+ "homepage": "https://github.com/lokehoke/bestHack#readme",
+ "dependencies": {
+  "react-router": "^5.1.2"
+ }
 }

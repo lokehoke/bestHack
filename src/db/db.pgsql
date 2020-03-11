@@ -1,28 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 11.7 (Ubuntu 11.7-0ubuntu0.19.10.1)
--- Dumped by pg_dump version 11.7 (Ubuntu 11.7-0ubuntu0.19.10.1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
---
--- Name: code; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.code (
     id integer NOT NULL,
@@ -32,12 +7,7 @@ CREATE TABLE public.code (
     name text
 );
 
-
 ALTER TABLE public.code OWNER TO postgres;
-
---
--- Name: code_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
 
 CREATE SEQUENCE public.code_id_seq
     AS integer
@@ -47,19 +17,9 @@ CREATE SEQUENCE public.code_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
 ALTER TABLE public.code_id_seq OWNER TO postgres;
 
---
--- Name: code_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
 ALTER SEQUENCE public.code_id_seq OWNED BY public.code.id;
-
-
---
--- Name: code_id_user_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
 
 CREATE SEQUENCE public.code_id_user_seq
     AS integer
@@ -316,7 +276,6 @@ ALTER TABLE ONLY public.config ALTER COLUMN id SET DEFAULT nextval('public.confi
 
 ALTER TABLE ONLY public.hash_algorithms ALTER COLUMN id SET DEFAULT nextval('public.hash_algorithms_id_seq'::regclass);
 
-
 --
 -- Name: roles id; Type: DEFAULT; Schema: public; Owner: postgres
 --
@@ -351,121 +310,8 @@ ALTER TABLE ONLY public.users ALTER COLUMN count_hash SET DEFAULT nextval('publi
 
 ALTER TABLE ONLY public.users ALTER COLUMN alg SET DEFAULT nextval('public.users_alg_seq'::regclass);
 
-
---
--- Data for Name: code; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.code (id, code, is_deleted, id_user, name) FROM stdin;
-\.
-
-
---
--- Data for Name: config; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.config (id, name, value) FROM stdin;
-1	new_registration	t
-2	persistent_store	t
-\.
-
-
---
--- Data for Name: hash_algorithms; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.hash_algorithms (id, name) FROM stdin;
-\.
-
-
---
--- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.roles (id, role) FROM stdin;
-1	admin
-2	user
-\.
-
-
---
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.users (id, email, is_blocked, is_deleted, role, pass, salt, count_hash, alg) FROM stdin;
-\.
-
-
---
--- Name: code_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.code_id_seq', 1, false);
-
-
---
--- Name: code_id_user_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.code_id_user_seq', 1, false);
-
-
---
--- Name: config_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.config_id_seq', 2, true);
-
-
---
--- Name: hash_algorithms_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.hash_algorithms_id_seq', 1, false);
-
-
---
--- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.roles_id_seq', 2, true);
-
-
---
--- Name: users_alg_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.users_alg_seq', 1, false);
-
-
---
--- Name: users_count_hash_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.users_count_hash_seq', 1, false);
-
-
---
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
-
-
---
--- Name: users_role_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.users_role_seq', 1, false);
-
-
---
--- Name: code code_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.code
     ADD CONSTRAINT code_pkey PRIMARY KEY (id);
-
 
 --
 -- Name: config config_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
@@ -527,3 +373,10 @@ ALTER TABLE ONLY public.users
 -- PostgreSQL database dump complete
 --
 
+INSERT INTO roles (id, role) VALUES (2, 'user')
+
+INSERT INTO roles (id, role) VALUES (1, 'admin')
+
+INSERT INTO hash_algorithms (id, name, keylen) VALUES (1, 'sha256', 32)
+
+ALTER TABLE hash_algorithms ADD keylen integer
