@@ -53,6 +53,11 @@ bytes@3.1.0:
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"
   integrity sha512-zauLjrfCG+xvoyaqLoV8bLVXXNGC4JqlxFCutSDWA6fJrTo2ZuvLYTqZ7aHBLZSMOopbzwv8f+wZcVzfVTI2Dg==
 
+compile-run@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/compile-run/-/compile-run-2.3.2.tgz#57984b17b112adb7ce2449ab61d9f710d98b12af"
+  integrity sha512-3nVvtKUsp/CfBv5vu69w/ZdxzGe+lqzQNWHxDxeLIfNOqiwyOP3Xm894KAQdRijfP12NTl9BoEswcwrFkIxVUQ==
+
 config@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/config/-/config-3.3.0.tgz#574deb6ff1438807b7ecf6dbad20dd32dd5655ab"
