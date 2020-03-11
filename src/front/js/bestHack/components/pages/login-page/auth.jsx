@@ -10,12 +10,19 @@ class Auth extends React.Component {
 
 
     render() {
+
+        let error = null;
+        if (this.props.authError === 'true') {
+            error = (
+                <div className="error">заебешь</div>
+            );
+        };
+        
+
         return(
             <div className="auth">
 
                 <form className="auth-form">
-
-                    
 
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Логин:</label>
@@ -28,7 +35,7 @@ class Auth extends React.Component {
                     </div>
                     
                     <button type="submit" className="auth-btn btn btn-primary">Войти</button>
-
+                    {error}
                     <div className="reg-link" onClick={this.props.setPath}>или зарегистрируйтесь</div>
                 </form>
 
@@ -37,6 +44,13 @@ class Auth extends React.Component {
     };
 };
 
+
+const mapStateToProps = state => {
+    return {
+        authError: state.authError
+    };
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         setPath: () => dispatch(setPath('/register'))
@@ -44,4 +58,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
