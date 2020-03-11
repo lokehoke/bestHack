@@ -19,7 +19,7 @@ class BestHack {
     constructor(selector) {
         this._mountPoint = document.querySelector(selector);
         this._store = store;
-        this._serverFetch = serverFetch;
+        this._serverFetch = null;
 
         ReactDOM.render(
            <Provider store={this._store}>
