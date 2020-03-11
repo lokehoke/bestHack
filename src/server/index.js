@@ -25,15 +25,22 @@ app.use(cors());
 const promiseGetIndexRouter = require('./routes/index');
 const promiseGetAuthRouter  = require('./routes/auth');
 const promiseGetRegRouter = require('./routes/register');
+const promiseGetMainRouter = require('./routes/main');
+const promiseGetAdminRouter = require('./routes/admin');
 
 async function main() {
     const index = await promiseGetIndexRouter();
     const auth = await promiseGetAuthRouter(index);
     const register = await promiseGetRegRouter(auth);
+    const main_r = await promiseGetMainRouter(register);
+    const admin = await promiseGetAdminRouter(main_r);
 
     app.use('/', index.router);
     app.use('/auth', auth.router);
     app.use('/register', register.router);
+    app.use('/main', main_r.router);
+    app.use('/admin', admin.router);
+    app.get('*', (req, res) => { res.sendStatus(404); });
 
     process.on('uncaughtException', async (err) => {
         //close file descriptors

@@ -1,3 +1,5 @@
+'use strict';
+
 const DBpg = require('./db/DBpg');
 const Auth = require('./auth/Auth');
 

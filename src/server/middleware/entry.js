@@ -9,28 +9,47 @@ class AuthMiddlewares{
         this.auth = authObj;
     }
 
-    //
+    //Check cookie and redirect to main if the user is registered and not blocked or deleted
+    //Redirect to /admin if user is an admin and he is not already on /admin route
+    //Else call next middleware
     async as_cookieCheck(req, res, next) {
-        if(!req.cookies['user'] && req.path !== '/auth') {
+        if(!req.cookies['user'] && req.path !== '/auth' && req.path !== '/register') {
             return res.redirect('/auth');
         }
+
         else{
             try {
-                const cookie = await this.auth.as_isCookieValidAuth(req.signedCookies['user']);
-                if (cookie) {
-                    //  return res.redirect('/main');
-                    console.log("Redirected to main!");
+                const cookie = req.signedCookies;
+                const user_status = await this.auth.as_CookieAuth(cookie);
+                if (user_status) {
+                    if(user_status === 'admin'){
+                        if(req.path !=='/admin'){
+                            res.redirect('/admin');
+                        }
+                        else{
+                            next();
+                        }
+                    }
+                    //user_status = user
+                    else{
+                        if(req.path !=='/main'){
+                            res.redirect('/main');
+                        }
+                        else{
+                            next();
+                        }
+                    }
                 } else {
-                    res.clearCookie('user', {path: req.path});
+                    res.clearCookie('user');
+                    next();
                 }
             }
             catch(err){
                 //Executed when there's no cookie or it's corrupted
-                res.clearCookie('user', { path: req.path });
+                res.clearCookie('user');
+                next();
             }
         }
-
-        next();
     }
 
     static sendIndex(req, res) {
@@ -67,12 +86,12 @@ class AuthMiddlewares{
                     const hash_algo = user_info.alg;
                     const hash = crypto.pbkdf2Sync(password, user_info.salt, user_info.count_hash, 32, hash_algo).toString('hex');
                     //If the hash match next route
-                    if (hash === user_info.pass) {
+                    if (hash === user_info.pass && !user_info.is_blocked && !user_info.is_deleted){
                         console.log(`User ${req.body.email} is logged in`);
                         next();
                     } else {
-                        console.error("Password match is failed");
-                        next(new Error("Login or password is invalid!"));
+                        console.error("Password match is failed or user is deleted");
+                        next(new Error("Login or password is invalid or user is deleted!"));
                     }
                 }
             } catch (err) {
