@@ -28,6 +28,8 @@ class Reg extends React.Component {
                     </div>
                     
                     <button type="submit" className="auth-btn btn btn-primary">Зарегистрироваться</button>
+                    <div className="back-to-auth"><div >Есть аккаунт?</div> <div className=" exit">Вход</div></div>
+                    
 
                 </form>
 
