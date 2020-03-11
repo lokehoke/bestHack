@@ -9,12 +9,16 @@ class User extends React.Component {
     render() {
         return (
 
-            <ul className="user-item list-group list-group-flush">
+            
                 <li className="list-group-item">
-                    <img className="pointer" src="resources/img/pointer.png" alt="efpve"/>
-                    <div className="user-title">Biba Boba</div>
+                    
+                    <div className="user-item">
+                        <img className="pointer" src="resources/img/pointer.png" alt="efpve"/>
+                        <div className="user-title">Biba Boba</div>
+                    </div>
+                    
                 </li>
-            </ul>
+           
 
         )
     }

@@ -1,6 +1,9 @@
 'use strict';
 import React from 'react';
 
+import { connect } from 'react-redux';
+import { setPath } from '../../../actions/actions.js';
+
 class Reg extends React.Component {
     constructor(props){
         super(props);
@@ -8,6 +11,14 @@ class Reg extends React.Component {
 
 
     render() {
+
+        let error = null;
+        if (this.props.registError === 'true') {
+            error = (
+                <div className="error">заебешь</div>
+            );
+        };
+
         return(
             <div className="auth">
 
@@ -28,7 +39,10 @@ class Reg extends React.Component {
                     </div>
                     
                     <button type="submit" className="auth-btn btn btn-primary">Зарегистрироваться</button>
-                    <div className="back-to-auth"><div >Есть аккаунт?</div> <div className=" exit">Вход</div></div>
+
+                    {error}
+
+                    <div className="back-to-auth"><div >Есть аккаунт?</div> <div className="exit" onClick={this.props.setPath}>Вход</div></div>
                     
 
                 </form>
@@ -38,4 +52,18 @@ class Reg extends React.Component {
     };
 };
 
-export default Reg;
+
+const mapStateToProps = state => {
+    return {
+        registError: state.registError
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setPath: () => {dispatch(setPath('/auth'))}
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reg);
