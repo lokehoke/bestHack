@@ -13,7 +13,7 @@ import ServerFetch from './ajax/serverFetch.js';
 
 const reducer     = getReducer(settings);
 const store       = createStore(reducer);
-const serverFetch = ServerFetch(store);
+const serverFetch = null;
 
 class BestHack {
     constructor(selector) {
