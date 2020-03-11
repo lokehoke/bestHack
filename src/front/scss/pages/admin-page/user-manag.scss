@@ -67,16 +67,24 @@
 .user-item {
     display: flex;
     align-items: center;
+    width: 90%;
+    height: 50px;
+    border-bottom: solid 1px;
+    border-color: #ADADAD;
+
 }
 
 .user {
-   width: 90%;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
 }
 
-// .list-group-item {
-    
-//     align-items: center;
-// }
+.user:hover {
+    background: $btn;
+    cursor: pointer;
+}
 
 
 .pointer {

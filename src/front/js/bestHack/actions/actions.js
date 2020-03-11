@@ -13,7 +13,6 @@ export const authError = () => ({
     type: 'AUTH-ERROR'
 });
 
-
 export const registSuccess = () => ({
     type: 'REGIST-SUCCESS'
 }); 
@@ -26,3 +25,10 @@ export const setUser = user => ({
     type: 'SET_USER',
     user,
 });
+
+export const ToggleUserWithble = id => ({
+    type: 'TOGGLE_USER_WITHBLE',
+    id,
+});
+
+ 

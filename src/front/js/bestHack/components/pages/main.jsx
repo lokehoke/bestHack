@@ -25,7 +25,7 @@ class Main extends React.Component {
                     <AdminPage />    
                 </div>
             );
-         }
+         };
 
 
 
