@@ -25,6 +25,7 @@
 
 .auth-form{
     width: 90%;
+
 }
 
 .auth-btn {
@@ -37,6 +38,22 @@
     text-align: center;
     color: $btn;
 }
+
+
+.back-to-auth {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.exit {
+    margin-left: 5px;
+    color: $btn;
+}
+.exit:hover {
+    color: $active-btn;
+    cursor: pointer;
+}
+
 
 .reg-link:hover {
     color: $active-btn;
