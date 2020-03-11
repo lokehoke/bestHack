@@ -1,5 +1,10 @@
 {
-    "currentPath": "/auth", 
-    "authError": "false",
-    "registError": "false"
+    "currentPath": "/auth",
+    "userInfo": {
+        "email": "",
+        "isAdmin": false
+    },
+    "isLogin": false,
+    "authError": false,
+    "registerError": false
 }

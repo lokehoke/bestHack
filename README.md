@@ -1,4 +1,4 @@
-# wynexGame
+# bestHack
 
 ## run server
 ```bash

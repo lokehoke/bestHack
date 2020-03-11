@@ -28,6 +28,11 @@ const getReducer = (settings) => (state = settings, action) => {
         registError: true,
       });
 
+    case 'SET_USER':
+			return Object.assign({}, state, {
+				userInfo: action.user,
+				isLogin: true,
+			});
 
     default:
       return state;

@@ -13,10 +13,16 @@ export const authError = () => ({
     type: 'AUTH-ERROR'
 });
 
+
 export const registSuccess = () => ({
     type: 'REGIST-SUCCESS'
 }); 
 
 export const registError = () => ({
     type: 'REGIST-ERROR'
+});
+
+export const setUser = user => ({
+    type: 'SET_USER',
+    user,
 });
