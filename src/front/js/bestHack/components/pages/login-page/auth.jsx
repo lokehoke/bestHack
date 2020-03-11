@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import { connect } from 'react-redux';
-import { setPath } from '../../../../actions/actions.js';
+import { setPath } from '../../../actions/actions.js';
 
 class Auth extends React.Component {
     constructor(props){
