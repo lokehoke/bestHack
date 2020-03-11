@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { setPath } from '../../../../actions/actions.js';
+import { setPath } from '../../../actions/actions.js';
 
 class Reg extends React.Component {
     constructor(props){
