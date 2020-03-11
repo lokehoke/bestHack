@@ -3,6 +3,7 @@ const getReducer = (settings) => (state = settings, action) => {
 	switch(action.type) {
 		
 		case 'SET_PATH':
+			history.pushState(null,'', action.newPath);
 			return Object.assign({}, state, {
 				currentPath: action.newPath,
 			});
