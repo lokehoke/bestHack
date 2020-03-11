@@ -521,9 +521,7 @@ var OpenUser = /*#__PURE__*/function (_React$Component) {
   _createClass(OpenUser, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "list-group-item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "active-pointer",
@@ -531,12 +529,8 @@ var OpenUser = /*#__PURE__*/function (_React$Component) {
         alt: "efpve"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-title"
-      }, "Biba Boba"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Biba Boba")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "alg-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "list-group list-group-flush"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "list-group-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -545,9 +539,7 @@ var OpenUser = /*#__PURE__*/function (_React$Component) {
         alt: "sadvsd"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "users-alg"
-      }, "Nice cock prodaction"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "list-group-item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Nice cock prodaction")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "alg-img",
@@ -555,7 +547,7 @@ var OpenUser = /*#__PURE__*/function (_React$Component) {
         alt: "sadvsd"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "users-alg"
-      }, "Awsome eggs industry"))))));
+      }, "Awsome eggs industry"))));
     }
   }]);
 
@@ -1590,7 +1582,7 @@ var getReducer = function getReducer(settings) {
 /*! exports provided: currentPath, userInfo, isLogin, authError, registerError, users, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"currentPath\":\"/auth\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"registerError\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\"},{\"isClose\":true,\"id\":\"214\",\"name\":\"Biba Boba\"}]}");
+module.exports = JSON.parse("{\"currentPath\":\"/admin\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"registerError\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\"},{\"isClose\":true,\"id\":\"214\",\"name\":\"Biba Boba\"}]}");
 
 /***/ }),
 
