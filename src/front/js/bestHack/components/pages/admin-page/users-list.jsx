@@ -1,7 +1,7 @@
 import React from 'react';
 
 import User from './user.jsx';
-import OpenUser from './chosen-user/open-user.jsx';
+import AlgList from './chosen-user/alg-list.jsx';
 import { connect } from 'react-redux';
 import { ToggleUserWithble } from '../../../actions/actions.js';
 
@@ -16,12 +16,14 @@ class UsersList extends React.Component {
         return (
             <div className="users-list">
                 {this.props.users.map((el, id) => (
-                    <div key={id} className="user" onClick={((id) => {return () => (this.props.ToggleUserWithble(id))})(el.id)}>
-                        <OpenUser  user={el} />
-                    </div>
+                    <User  key={id}  user={el} />
                     )
                 )}
             </div>
+
+
+
+
         )
     }
 
@@ -34,12 +36,6 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    
-    return {
-        ToggleUserWithble: (id) => dispatch(ToggleUserWithble(id)),
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersList);
-//export default UsersList;
+
+export default connect(mapStateToProps)(UsersList);
