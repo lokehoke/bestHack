@@ -4,10 +4,10 @@ services:
         image: postgres
         restart: always
         environment:
+            POSTGRES_USER: "postgres"
             POSTGRES_PASSWORD: 123
+            POSTGRES_DB: "postgres"
         container_name: "db"
-        volumes:
-            - ./src/db:/var/lib/postgresql/data
         ports:
             - "5432:5432"
     server:

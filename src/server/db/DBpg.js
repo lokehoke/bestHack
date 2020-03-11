@@ -15,9 +15,9 @@ class DBpg{
             fs.readFile(path.join(__dirname, "../../", "db", filename)).
                 then((data) => {
                     this.dump = data.toString();
-                    console.log("The dump file was read");
-            }).
-                catch((err) => { console.error(err) })
+            }).catch( err => {
+                console.error(err);
+            });
         }
     }
 

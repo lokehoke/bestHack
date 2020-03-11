@@ -13,13 +13,13 @@ import ServerFetch from './ajax/serverFetch.js';
 
 const reducer     = getReducer(settings);
 const store       = createStore(reducer);
-const serverFetch = null;
+const serverFetch = new ServerFetch(store);
 
 class BestHack {
     constructor(selector) {
         this._mountPoint = document.querySelector(selector);
         this._store = store;
-        this._serverFetch = serverFetch;
+        this._serverFetch = null;
 
         ReactDOM.render(
            <Provider store={this._store}>

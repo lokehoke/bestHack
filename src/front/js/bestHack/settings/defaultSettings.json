@@ -6,5 +6,19 @@
     },
     "isLogin": false,
     "authError": false,
-    "registerError": false
+    "registerError": false,
+    "users": 
+    [
+        {
+            "isClose": true,
+            "id": "213",
+            "name": "Biba Boba"
+        },
+
+        {
+            "isClose": true,
+            "id": "214",
+            "name": "Biba Boba"
+        }
+    ]
 }

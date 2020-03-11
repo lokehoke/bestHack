@@ -9,17 +9,10 @@ class User extends React.Component {
     render() {
         return (
 
-            
-                <li className="list-group-item">
-                    
-                    <div className="user-item">
-                        <img className="pointer" src="resources/img/pointer.png" alt="efpve"/>
-                        <div className="user-title">Biba Boba</div>
-                    </div>
-                    
-                </li>
-           
-
+                <div className="user-item">
+                    <img className="pointer" src="resources/img/pointer.png" alt="efpve"/>
+                    <div className="user-title">{this.props.user.name}</div>
+                </div>        
         )
     }
 };
