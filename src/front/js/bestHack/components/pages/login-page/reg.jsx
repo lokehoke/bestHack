@@ -11,6 +11,14 @@ class Reg extends React.Component {
 
 
     render() {
+
+        let error = null;
+        if (this.props.registError === 'true') {
+            error = (
+                <div className="error">заебешь</div>
+            );
+        };
+
         return(
             <div className="auth">
 
@@ -31,6 +39,9 @@ class Reg extends React.Component {
                     </div>
                     
                     <button type="submit" className="auth-btn btn btn-primary">Зарегистрироваться</button>
+
+                    {error}
+
                     <div className="back-to-auth"><div >Есть аккаунт?</div> <div className="exit" onClick={this.props.setPath}>Вход</div></div>
                     
 
@@ -41,6 +52,13 @@ class Reg extends React.Component {
     };
 };
 
+
+const mapStateToProps = state => {
+    return {
+        registError: state.registError
+    };
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         setPath: () => {dispatch(setPath('/auth'))}
@@ -48,4 +66,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(null, mapDispatchToProps)(Reg);
+export default connect(mapStateToProps, mapDispatchToProps)(Reg);

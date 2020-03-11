@@ -13,7 +13,7 @@ class UsersList extends React.Component {
             <div className="users-list">
                 <div className="user">
                     <ul className="list-group list-group-flush">
-                        <OpenUser />
+                        <User />
                         <User />
                     </ul>
                 </div>

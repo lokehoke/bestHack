@@ -13,7 +13,7 @@ class AdminPage extends React.Component {
         return(
             <div className="admin-page">
                 <UsersManag />
-                <ChosenEmptyBlock />
+                <EmptyBlock />
             </div> 
         );
     };

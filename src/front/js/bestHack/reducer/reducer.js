@@ -18,6 +18,16 @@ const getReducer = (settings) => (state = settings, action) => {
         authError: true,
       });
 
+      case 'REGIST_SUCCESS':
+      return Object.assign({}, state, {
+        registError: false,
+      });
+
+      case 'REGIST_ERROR':
+      return Object.assign({}, state, {
+        registError: true,
+      });
+
 
     default:
       return state;

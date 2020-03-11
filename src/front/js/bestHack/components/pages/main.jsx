@@ -19,7 +19,15 @@ class Main extends React.Component {
                     <LoginPage />    
                 </div>
             );
+         } else if (this.props.currentPath === '/admin') {
+            return (
+                <div className="main">
+                    <AdminPage />    
+                </div>
+            );
          }
+
+
 
         return (
             <div className="main">
@@ -32,7 +40,7 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) =>  {
     return {                         
-        currentPath: state.currentPath
+        currentPath: state.currentPath,
     };
 };
 

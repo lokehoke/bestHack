@@ -12,3 +12,11 @@ export const authSuccess = () => ({
 export const authError = () => ({
     type: 'AUTH-ERROR'
 });
+
+export const registSuccess = () => ({
+    type: 'REGIST-SUCCESS'
+}); 
+
+export const registError = () => ({
+    type: 'REGIST-ERROR'
+});
