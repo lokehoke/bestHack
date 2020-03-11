@@ -1590,7 +1590,7 @@ var getReducer = function getReducer(settings) {
 /*! exports provided: currentPath, userInfo, isLogin, authError, registerError, users, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"currentPath\":\"/admin\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"registerError\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\"},{\"isClose\":true,\"id\":\"214\",\"name\":\"Biba Boba\"}]}");
+module.exports = JSON.parse("{\"currentPath\":\"/auth\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"registerError\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\"},{\"isClose\":true,\"id\":\"214\",\"name\":\"Biba Boba\"}]}");
 
 /***/ }),
 
