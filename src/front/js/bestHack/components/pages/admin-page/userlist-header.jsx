@@ -12,7 +12,7 @@ class UsersListHeader extends React.Component {
                 
                 <img src="resources/img/sidebar-btn.png" alt="btn" className="sidebar-btn"/>
 
-                <div className="form-group">
+                <div className="users-form-group form-group">
                         <input type="search" placeholder="Поиск "className="form-control"></input>
                 </div>            
                 
