@@ -16,15 +16,11 @@ module.exports = (index) => (async function(){
     //post is valid -> send ok
     //invalid send error
     router.post('/auth',
-        middlewares.as_checkAuthData.bind(middlewares),
+        AuthMiddleware.checkAuthBody,
+        middlewares.as_checkAuth.bind(middlewares),
+        AuthMiddleware.setCookie,
         AuthMiddleware.sendOk,
     );
-
-    //Error handler
-    router.use((err, req, res, next) => {
-        console.log(`Error: ${err.message} on data ${JSON.stringify(req.body)}`);
-        res.status(400).json({ error: err.message });
-    });
 
     return index;
 })();

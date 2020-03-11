@@ -50,6 +50,8 @@ class DBpg{
         console.log(`User with username: ${userObj.email} were successfully added to the database!`);
     }
 
+
+
     async close(){
         this.db.end();
     }

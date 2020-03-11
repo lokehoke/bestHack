@@ -21,7 +21,7 @@ class Auth {
         }
         else{
           try{
-              return await as_DBUserCheck(login);
+              return await this.db.as_DBUserMatch(login);
           }
           catch(e){
               console.error(e);
@@ -32,15 +32,16 @@ class Auth {
 
     /**
      *
-     * @param login
+     * @param email
      * @returns {Promise<boolean>} The result of login match for this user.
      * @private
      */
-    async _as_DBUserMatch(login) {
+    async as_DBUserMatch(email) {
         try {
-            const user_info = await this.db.as_getUser(login);
-            return login === user_info.login;
-        } catch (e) {
+            const user_info = await this.db.as_getUser(email);
+            return !!user_info;
+        }
+        catch (e) {
             throw e;
         }
     }
