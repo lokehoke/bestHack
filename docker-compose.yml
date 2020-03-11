@@ -19,3 +19,4 @@ services:
         container_name: "server"
         environment:
             NODE_MODE: "prod"
+            DBDUMP: "false"
