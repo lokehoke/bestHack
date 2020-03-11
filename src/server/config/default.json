@@ -1,0 +1,14 @@
+{
+  "hash":{
+    "algorithm": "sha256",
+    "max_iter": 4,
+    "keylen": 32
+  },
+  "db": {
+    "user": "postgres",
+    "host": "localhost",
+    "database": "postgres",
+    "password": "seregamw1"
+  },
+  "secretKey": "b3W6l0"
+}

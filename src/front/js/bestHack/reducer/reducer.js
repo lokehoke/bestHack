@@ -1,6 +1,7 @@
 'use strict';
 const getReducer = (settings) => (state = settings, action) => {
   
+
   switch(action.type) {
     
     case 'SET_PATH':
@@ -17,8 +18,11 @@ const getReducer = (settings) => (state = settings, action) => {
       return Object.assign({}, state, {
         authError: true,
       });
-
-
+    case 'SET_USER':
+			return Object.assign({}, state, {
+				userInfo: action.user,
+				isLogin: true,
+			});
     default:
       return state;
   }

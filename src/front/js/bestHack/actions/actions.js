@@ -12,3 +12,8 @@ export const authSuccess = () => ({
 export const authError = () => ({
     type: 'AUTH-ERROR'
 });
+
+export const setUser = user => ({
+    type: 'SET_USER',
+    user,
+});

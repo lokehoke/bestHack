@@ -6,7 +6,7 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 
 let config = {
-	watch: true,
+	watch: false,
 	devtool: 'source-map',
 	mode: 'development',
 	entry: {
