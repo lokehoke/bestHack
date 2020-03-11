@@ -7,7 +7,7 @@ module.exports = (index) => (async function(){
 
     router.get('/admin',
         middlewares.as_cookieCheck.bind(middlewares),
-        AuthMiddleware.sendIndex
+        AuthMiddleware.sendIndex,
     );
 
     //Error handler
