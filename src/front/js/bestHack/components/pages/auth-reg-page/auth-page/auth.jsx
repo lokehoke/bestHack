@@ -14,6 +14,9 @@ class Auth extends React.Component {
             <div className="auth">
 
                 <form className="auth-form">
+
+                    
+
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Логин:</label>
                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
@@ -26,7 +29,7 @@ class Auth extends React.Component {
                     
                     <button type="submit" className="auth-btn btn btn-primary">Войти</button>
 
-                    <div className="reg-link" onClick={this.props.setPath}>или зарегистрируйтесь ></div>
+                    <div className="reg-link" onClick={this.props.setPath}>или зарегистрируйтесь</div>
                 </form>
 
             </div>
