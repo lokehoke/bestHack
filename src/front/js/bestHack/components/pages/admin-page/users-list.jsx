@@ -11,15 +11,16 @@ class UsersList extends React.Component {
     };
 
     render() {
+
+
         return (
             <div className="users-list">
                 {this.props.users.map((el, id) => (
                     <div key={id} className="user" onClick={((id) => {return () => (this.props.ToggleUserWithble(id))})(el.id)}>
-                        <User  user={el} />
+                        <OpenUser  user={el} />
                     </div>
                     )
                 )}
-                
             </div>
         )
     }
