@@ -45,7 +45,7 @@ class UserBlock extends React.Component {
         } else {
             return (
                 <div className="user-block">
-                    <div className="user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
+                    <div className="user open-user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
                         <OpenUser name={this.props.user.name}/>          
                     </div>
                     <AlgList /> 
