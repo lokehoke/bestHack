@@ -27,6 +27,16 @@ class BestHack {
            </Provider>,
             this._mountPoint
         );
+
+        document.addEventListener('selectstart', e => {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('contextmenu', e => {
+            e.preventDefault();
+            return false;
+        });
              
     };
 }

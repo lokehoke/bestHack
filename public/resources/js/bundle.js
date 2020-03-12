@@ -287,6 +287,14 @@ var BestHack = function BestHack(selector) {
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_app_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
     serverFetch: this._serverFetch
   })), this._mountPoint);
+  document.addEventListener('selectstart', function (e) {
+    e.preventDefault();
+    return false;
+  });
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+    return false;
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BestHack);
@@ -483,8 +491,7 @@ var AlgList = /*#__PURE__*/function (_React$Component) {
           alt: "sadvsd"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "users-alg"
-        }, "Awsome eggs industry"))) // </div>
-
+        }, "Awsome eggs industry")))
       );
     }
   }]);
@@ -557,6 +564,69 @@ var ChosenEmptyBlock = /*#__PURE__*/function (_React$Component) {
 
 ;
 /* harmony default export */ __webpack_exports__["default"] = (ChosenEmptyBlock);
+
+/***/ }),
+
+/***/ "./js/bestHack/components/pages/admin-page/chosen-user/open-user.jsx":
+/*!***************************************************************************!*\
+  !*** ./js/bestHack/components/pages/admin-page/chosen-user/open-user.jsx ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var OpenUser = /*#__PURE__*/function (_React$Component) {
+  _inherits(OpenUser, _React$Component);
+
+  function OpenUser(props) {
+    _classCallCheck(this, OpenUser);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(OpenUser).call(this, props));
+  }
+
+  _createClass(OpenUser, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "active-pointer",
+        src: "resources/img/active-pointer.png",
+        alt: "efpve"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-title"
+      }, this.props.name));
+    }
+  }]);
+
+  return OpenUser;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+;
+/* harmony default export */ __webpack_exports__["default"] = (OpenUser);
 
 /***/ }),
 
@@ -688,10 +758,10 @@ var EmptyBlock = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./js/bestHack/components/pages/admin-page/user.jsx":
-/*!**********************************************************!*\
-  !*** ./js/bestHack/components/pages/admin-page/user.jsx ***!
-  \**********************************************************/
+/***/ "./js/bestHack/components/pages/admin-page/user-block.jsx":
+/*!****************************************************************!*\
+  !*** ./js/bestHack/components/pages/admin-page/user-block.jsx ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -701,6 +771,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_actions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/actions.js */ "./js/bestHack/actions/actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _chosen_user_alg_list_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chosen-user/alg-list.jsx */ "./js/bestHack/components/pages/admin-page/chosen-user/alg-list.jsx");
+/* harmony import */ var _user_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user.jsx */ "./js/bestHack/components/pages/admin-page/user.jsx");
+/* harmony import */ var _chosen_user_open_user_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chosen-user/open-user.jsx */ "./js/bestHack/components/pages/admin-page/chosen-user/open-user.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -723,42 +796,69 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var User = /*#__PURE__*/function (_React$Component) {
-  _inherits(User, _React$Component);
 
-  function User(props) {
-    _classCallCheck(this, User);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(User).call(this, props));
+
+var UserBlock = /*#__PURE__*/function (_React$Component) {
+  _inherits(UserBlock, _React$Component);
+
+  function UserBlock(props) {
+    _classCallCheck(this, UserBlock);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(UserBlock).call(this, props));
   }
 
-  _createClass(User, [{
+  _createClass(UserBlock, [{
     key: "render",
     value: function render() {
       var _this = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "user-block"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "user",
-        onClick: function onClick() {
-          _this.props.ToggleUserWithble(_this.props.user.id);
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "user-item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "pointer",
-        src: "resources/img/pointer.png",
-        alt: "efpve"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "user-title"
-      }, this.props.user.name)))) //    <div key={id} className="user" onClick={((id) => {return () => (this.props.ToggleUserWithble(id))})(el.id)}>
+      // const openClose = (props) => {
+      //     if (this.props.user.isClose) {
+      //         return (  
+      //             <User name={this.props.user.name}/>         
+      //         );
+      //     } else {
+      //         return (
+      //             <OpenUser name={this.props.user.name}/>  
+      //             <AlgList />     
+      //         );
+      //     }
+      // }
+      // return (
+      //     <div className="user-block">
+      //         <div className="user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
+      //             {openClose(this.props)}  
+      //         </div>
       //     </div>
-      ;
+      // );
+      if (this.props.user.isClose) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-block"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user",
+          onClick: function onClick() {
+            _this.props.ToggleUserWithble(_this.props.user.id);
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          name: this.props.user.name
+        })));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-block"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user",
+          onClick: function onClick() {
+            _this.props.ToggleUserWithble(_this.props.user.id);
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chosen_user_open_user_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          name: this.props.user.name
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chosen_user_alg_list_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      }
     }
   }]);
 
-  return User;
+  return UserBlock;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 ;
@@ -771,7 +871,70 @@ var mapDispatchToProps = function mapDispatchToProps(dispath) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, mapDispatchToProps)(User));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, mapDispatchToProps)(UserBlock));
+
+/***/ }),
+
+/***/ "./js/bestHack/components/pages/admin-page/user.jsx":
+/*!**********************************************************!*\
+  !*** ./js/bestHack/components/pages/admin-page/user.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var User = /*#__PURE__*/function (_React$Component) {
+  _inherits(User, _React$Component);
+
+  function User(props) {
+    _classCallCheck(this, User);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(User).call(this, props));
+  }
+
+  _createClass(User, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "pointer",
+        src: "resources/img/pointer.png",
+        alt: "efpve"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-title"
+      }, this.props.name));
+    }
+  }]);
+
+  return User;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+;
+/* harmony default export */ __webpack_exports__["default"] = (User);
 
 /***/ }),
 
@@ -853,10 +1016,8 @@ var UsersListHeader = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _user_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user.jsx */ "./js/bestHack/components/pages/admin-page/user.jsx");
-/* harmony import */ var _chosen_user_alg_list_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chosen-user/alg-list.jsx */ "./js/bestHack/components/pages/admin-page/chosen-user/alg-list.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_actions_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/actions.js */ "./js/bestHack/actions/actions.js");
+/* harmony import */ var _user_block_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user-block.jsx */ "./js/bestHack/components/pages/admin-page/user-block.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -879,8 +1040,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-
 var UsersList = /*#__PURE__*/function (_React$Component) {
   _inherits(UsersList, _React$Component);
 
@@ -893,12 +1052,14 @@ var UsersList = /*#__PURE__*/function (_React$Component) {
   _createClass(UsersList, [{
     key: "render",
     value: function render() {
+      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "users-list"
       }, this.props.users.map(function (el, id) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_block_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: id,
-          user: el
+          user: el,
+          isClose: el.isClose
         });
       }));
     }
@@ -915,7 +1076,7 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps)(UsersList));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(UsersList));
 
 /***/ }),
 
@@ -1591,7 +1752,7 @@ var getReducer = function getReducer(settings) {
 /*! exports provided: currentPath, userInfo, isLogin, authError, registerError, users, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"currentPath\":\"/auth\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"registerError\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\"},{\"isClose\":true,\"id\":\"214\",\"name\":\"Biba Boba\"}]}");
+module.exports = JSON.parse("{\"currentPath\":\"/auth\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"registerError\":false,\"users\":[{\"isClose\":false,\"id\":\"213\",\"name\":\"Biba Boba\"},{\"isClose\":true,\"id\":\"214\",\"name\":\"Biba Boba\"}]}");
 
 /***/ }),
 
