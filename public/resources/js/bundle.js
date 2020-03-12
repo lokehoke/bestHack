@@ -185,7 +185,7 @@ var ServerFetch = /*#__PURE__*/function () {
 
       var onGood = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
       var onError = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
-      fetch('/register', ServerFetch._getUserFetch()).then(function (res) {
+      fetch('/register', this._getUserFetch(user)).then(function (res) {
         onGood(res);
 
         _this._dispatchSetUser(user);
@@ -200,7 +200,7 @@ var ServerFetch = /*#__PURE__*/function () {
 
       var onGood = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
       var onError = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
-      fetch('/auth', ServerFetch._getUserFetch()).then(function (res) {
+      fetch('/auth', this._getUserFetch(user)).then(function (res) {
         onGood(res);
 
         _this2._dispatchSetUser(user);

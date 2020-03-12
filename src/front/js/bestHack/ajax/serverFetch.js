@@ -1,31 +1,35 @@
 'use strict';
 
+import { setUser } from '../actions/actions.js';
+
 const defStore = {
     dispatch: () => {},
 };
 
-class ServerFetch {
+export default class ServerFetch {
     constructor(store = defStore) {
         this._store = store;
     }
 
     registerFetch(user, onGood = () => {}, onError = () => {}) {
-        fetch('/register', ServerFetch._getUserFetch(user)).then(res => {
+        fetch('/register', this._getUserFetch(user)).then(res => {
             onGood(res);
+            this._dispatchSetUser(user);
         }).catch(err => {
             onError(err);
         });
     }
 
     authFetch(user, onGood = () => {}, onError = () => {}) {
-        fetch('/auth', ServerFetch._getUserFetch(user)).then(res => {
+        fetch('/auth', this._getUserFetch(user)).then(res => {
             onGood(res);
+            this._dispatchSetUser(user);
         }).catch(err => {
             onError(err);
         });
     }
 
-    static _getUserFetch(user) {
+    _getUserFetch(user) {
         return {
             method: 'POST',
             credentials: 'include',
@@ -37,5 +41,12 @@ class ServerFetch {
                 'Content-Type': 'application/json;charset=utf-8',
             },
         };
+    }
+
+    _dispatchSetUser(user) {
+        this._store.dispatch(setUser({
+            email: user.email,
+            password: user.password,
+        }));
     }
 }
