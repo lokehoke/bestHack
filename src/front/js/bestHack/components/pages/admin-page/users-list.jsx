@@ -1,9 +1,8 @@
 import React from 'react';
 
-import User from './user.jsx';
-import AlgList from './chosen-user/alg-list.jsx';
+import UserBlock from './user-block.jsx';
 import { connect } from 'react-redux';
-import { ToggleUserWithble } from '../../../actions/actions.js';
+
 
 class UsersList extends React.Component {
     constructor(props) {
@@ -11,18 +10,14 @@ class UsersList extends React.Component {
     };
 
     render() {
-
-
+        console.log(this.props);
         return (
             <div className="users-list">
                 {this.props.users.map((el, id) => (
-                    <User  key={id}  user={el} />
+                        <UserBlock  key={id}  user={el} isClose={el.isClose} />
                     )
                 )}
             </div>
-
-
-
 
         )
     }
