@@ -10,15 +10,87 @@
     "users": 
     [
         {
-            "isClose": false,
+            "isClose": true,
             "id": "213",
-            "name": "Biba Boba"
+            "name": "Biba Boba",
+            "algs": [
+                {
+                    "name": "Sex formula",
+                    "code": "vvrtb"
+                },
+
+                {
+                    "name": "Nice cock production",
+                    "code": "vvdvrtb"
+                },
+                {
+                    "name": "Awesome eggs industry",
+                    "code": "vvdvr"
+                }
+            ]
         },
 
         {
             "isClose": true,
-            "id": "214",
-            "name": "Biba Boba"
+            "id": "2414",
+            "name": "Biba Boba",
+            "algs": [
+                {
+                    "name": "Sex formula",
+                    "code": "vvrtb"
+                },
+
+                {
+                    "name": "Nice cock production",
+                    "code": "vvdvrtb"
+                },
+                {
+                    "name": "Awesome eggs industry",
+                    "code": "vvdvr"
+                }
+            ]
+        },
+
+        {
+            "isClose": true,
+            "id": "2143",
+            "name": "Biba Boba",
+            "algs": [
+                {
+                    "name": "Sex formula",
+                    "code": "vvrtb"
+                },
+
+                {
+                    "name": "Nice cock production",
+                    "code": "vvdvrtb"
+                },
+                {
+                    "name": "Awesome eggs industry",
+                    "code": "vvdvr"
+                }
+            ]
+        },
+
+        {
+            "isClose": true,
+            "id": "2314",
+            "name": "Biba Boba",
+            "algs": [
+                {
+                    "name": "Sex formula",
+                    "code": "vvrtb"
+                },
+
+                {
+                    "name": "Nice cock production",
+                    "code": "vvdvrtb"
+                },
+                {
+                    "name": "Awesome eggs industry",
+                    "code": "vvdvr"
+                }
+            ]
         }
     ]
 }

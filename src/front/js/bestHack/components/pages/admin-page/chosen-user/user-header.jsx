@@ -10,7 +10,7 @@ class UserHeader extends React.Component {
             <div className="user-header">
                 <div className="header-el">
                     <img className="block-img" src="resources/img/block.png" alt="block"/>
-                    <div className="title"> Biba Boba </div>
+                    <div className="title"> {this.props.name} </div>
                     <div className="access-right">Пользователь</div>
                 </div>
                
