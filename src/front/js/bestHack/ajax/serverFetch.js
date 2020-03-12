@@ -46,7 +46,7 @@ export default class ServerFetch {
     _dispatchSetUser(user) {
         this._store.dispatch(setUser({
             email: user.email,
-            password: user.isAdmin,
+            password: user.password,
         }));
     }
 }
