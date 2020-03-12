@@ -9,3 +9,4 @@ $ ./inin.sh
 $ ./install_dep.sh
 ```
 Lalala
+Я буду сотый
