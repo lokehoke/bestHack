@@ -10,7 +10,7 @@
     "users": 
     [
         {
-            "isClose": true,
+            "isClose": false,
             "id": "213",
             "name": "Biba Boba"
         },

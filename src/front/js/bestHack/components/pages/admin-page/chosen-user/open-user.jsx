@@ -1,21 +1,19 @@
 import React from 'react';
 
 
-class User extends React.Component {
+class OpenUser extends React.Component {
     constructor(props) {
         super(props);
     };
 
     render() {
- 
         return (
             <div className="user-item">
-                <img className="pointer" src="resources/img/pointer.png" alt="efpve"/>
+                <img className="active-pointer" src="resources/img/active-pointer.png" alt="efpve"/>
                 <div className="user-title">{this.props.name}</div>
-            </div>  
-                 
+            </div>            
         )
     }
 };
 
-export default User;
+export default OpenUser;

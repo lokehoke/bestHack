@@ -32,7 +32,7 @@ class AlgList extends React.Component {
                                 </div>
                          
                     </div>
-            // </div>
+            
                 
 
                 
