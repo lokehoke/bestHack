@@ -16,13 +16,13 @@ class Main extends React.Component {
          if (this.props.currentPath === '/auth' || this.props.currentPath === '/register') {
             return (
                 <div className="main">
-                    <LoginPage />    
+                    <LoginPage serverFetch={this.props.serverFetch} />    
                 </div>
             );
          } else if (this.props.currentPath === '/admin') {
             return (
                 <div className="main">
-                    <AdminPage />    
+                    <AdminPage serverFetch={this.props.serverFetch} />    
                 </div>
             );
          };

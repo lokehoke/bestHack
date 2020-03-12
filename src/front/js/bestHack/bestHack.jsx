@@ -12,7 +12,9 @@ import ServerFetch from './ajax/serverFetch.js';
 import { setPath } from './actions/actions.js'
 
 const reducer     = getReducer(settings);
-const store       = createStore(reducer);
+const store       = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__({
+    serialize: true
+}));
 const serverFetch = new ServerFetch(store);
 
 

@@ -275,7 +275,9 @@ var settings = __webpack_require__(/*! ./settings/defaultSettings.json */ "./js/
 
 
 var reducer = Object(_reducer_reducer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(settings);
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(reducer);
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__({
+  serialize: true
+}));
 var serverFetch = new _ajax_serverFetch_js__WEBPACK_IMPORTED_MODULE_6__["default"](store);
 
 var BestHack = function BestHack(selector) {
@@ -353,7 +355,9 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_main_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_main_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        serverFetch: this.props.serverFetch
+      });
     }
   }]);
 
@@ -1440,14 +1444,18 @@ var LoginBlock = /*#__PURE__*/function (_React$Component) {
             className: "col-5"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "auth-block"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_descr_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_descr_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            serverFetch: this.props.serverFetch
+          })));
 
         case '/register':
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "col-5"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "auth-block"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_descr_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reg_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_descr_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reg_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            serverFetch: this.props.serverFetch
+          })));
       }
 
       ;
@@ -1488,10 +1496,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var LoginPage = function LoginPage() {
+var LoginPage = function LoginPage(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "auth-page"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_img_block_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_block_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_img_block_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_block_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    serverFetch: props.serverFetch
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LoginPage);
@@ -1523,9 +1533,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1539,20 +1549,100 @@ var Reg = /*#__PURE__*/function (_React$Component) {
   _inherits(Reg, _React$Component);
 
   function Reg(props) {
+    var _this;
+
     _classCallCheck(this, Reg);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Reg).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Reg).call(this, props));
+    _this.state = {
+      isError: false,
+      kindError: ''
+    };
+    _this._clickEnter = _this._clickEnter.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Reg, [{
+    key: "_validateEmail",
+    value: function _validateEmail(email) {
+      return /\S+@\S+\.\S+/.test(email);
+    }
+  }, {
+    key: "_clickEnter",
+    value: function _clickEnter(e) {
+      e.preventDefault();
+      var email = document.querySelector('#registEmailID');
+      var pass = document.querySelector('#registPassID');
+      var repass = document.querySelector('#registRePassId');
+
+      if (email.value === '') {
+        this.setState({
+          isError: true,
+          kindError: 'emailEmpty'
+        });
+      } else if (!this._validateEmail(email.value)) {
+        this.setState({
+          isError: true,
+          kindError: 'notValidEmail'
+        });
+      } else if (pass.value == '') {
+        this.setState({
+          isError: true,
+          kindError: 'passEmpty'
+        });
+      } else if (pass.value !== repass.value) {
+        this.setState({
+          isError: true,
+          kindError: 'passNotEqual'
+        });
+      } else {
+        this.setState({
+          isError: false,
+          kindError: ''
+        });
+        this.props.serverFetch.registerFetch({
+          email: email.value,
+          password: pass.value
+        }, function (res) {
+          console.log(res);
+        }, function (res) {
+          console.log(res);
+        });
+      }
+
+      return false;
+    }
+  }, {
     key: "render",
     value: function render() {
       var error = null;
 
-      if (this.props.registError === 'true') {
-        error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "error"
-        }, "\u0437\u0430\u0435\u0431\u0435\u0448\u044C");
+      if (this.state.isError) {
+        switch (this.state.kindError) {
+          case 'emailEmpty':
+            error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "error"
+            }, "\u0412\u044B \u043D\u0435 \u0432\u0432\u0435\u043B\u0438 email.");
+            break;
+
+          case 'notValidEmail':
+            error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "error"
+            }, "\u041D\u0435\u0432\u0430\u043B\u0438\u0434\u043D\u044B\u0439 email.");
+            break;
+
+          case 'passEmpty':
+            error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "error"
+            }, "\u0412\u044B \u043D\u0435 \u0432\u0432\u0435\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C.");
+            break;
+
+          case 'passNotEqual':
+            error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "error"
+            }, "\u0412\u0432\u0435\u0434\u0435\u043D\u043D\u044B\u0435 \u043F\u0430\u0440\u043E\u043B\u0438 \u043D\u0435 \u0441\u043E\u0432\u043F\u0430\u0434\u0430\u044E\u0442.");
+            break;
+        }
       }
 
       ;
@@ -1563,31 +1653,31 @@ var Reg = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "exampleInputEmail1"
+        htmlFor: "registEmailID"
       }, "\u041B\u043E\u0433\u0438\u043D:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "form-control",
-        id: "exampleInputEmail1",
+        id: "registEmailID",
         "aria-describedby": "emailHelp"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "exampleInputPassword1"
+        htmlFor: "registPassID"
       }, "\u041F\u0430\u0440\u043E\u043B\u044C:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         className: "form-control",
-        id: "exampleInputPassword1"
+        id: "registPassID"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "exampleInputPassword1"
+        htmlFor: "registRePassId"
       }, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         className: "form-control",
-        id: "exampleInputPassword1"
+        id: "registRePassId"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "auth-btn btn btn-primary"
+        className: "auth-btn btn btn-primary",
+        onClick: this._clickEnter
       }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"), error, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "back-to-auth"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u0415\u0441\u0442\u044C \u0430\u043A\u043A\u0430\u0443\u043D\u0442?"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1602,12 +1692,6 @@ var Reg = /*#__PURE__*/function (_React$Component) {
 
 ;
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    registError: state.registError
-  };
-};
-
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     setPath: function setPath() {
@@ -1616,7 +1700,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Reg));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(Reg));
 
 /***/ }),
 
@@ -1676,11 +1760,15 @@ var Main = /*#__PURE__*/function (_React$Component) {
       if (this.props.currentPath === '/auth' || this.props.currentPath === '/register') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "main"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_page_login_page_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_page_login_page_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          serverFetch: this.props.serverFetch
+        }));
       } else if (this.props.currentPath === '/admin') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "main"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_page_admin_page_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_page_admin_page_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          serverFetch: this.props.serverFetch
+        }));
       }
 
       ;
@@ -1781,10 +1869,10 @@ var getReducer = function getReducer(settings) {
 /*!***************************************************!*\
   !*** ./js/bestHack/settings/defaultSettings.json ***!
   \***************************************************/
-/*! exports provided: currentPath, userInfo, isLogin, authError, registerError, users, default */
+/*! exports provided: currentPath, userInfo, isLogin, authError, users, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"currentPath\":\"/auth\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"registerError\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2414\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2143\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2314\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]}]}");
+module.exports = JSON.parse("{\"currentPath\":\"/auth\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2414\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2143\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2314\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]}]}");
 
 /***/ }),
 

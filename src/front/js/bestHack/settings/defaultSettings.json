@@ -6,7 +6,6 @@
     },
     "isLogin": false,
     "authError": false,
-    "registerError": false,
     "users": 
     [
         {

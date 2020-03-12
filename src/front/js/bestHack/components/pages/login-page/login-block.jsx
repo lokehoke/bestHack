@@ -19,7 +19,7 @@ class LoginBlock extends React.Component {
                     <div className="col-5">
                         <div className="auth-block">
                             <Descr />
-                            <Auth />
+                            <Auth serverFetch={this.props.serverFetch} />
                         </div>
                     </div>
                 );
@@ -28,7 +28,7 @@ class LoginBlock extends React.Component {
                     <div className="col-5">
                         <div className="auth-block">
                             <Descr />
-                            <Reg />
+                            <Reg serverFetch={this.props.serverFetch} />
                         </div>
                     </div>
                 )

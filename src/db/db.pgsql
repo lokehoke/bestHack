@@ -373,12 +373,10 @@ ALTER TABLE ONLY public.users
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO roles (id, role) VALUES (2, 'user');
-
-INSERT INTO roles (id, role) VALUES (1, 'admin');
+INSERT INTO roles (role) VALUES ('admin');
+INSERT INTO roles (role) VALUES ('user');
 
 ALTER TABLE hash_algorithms ADD keylen integer;
-
-INSERT INTO hash_algorithms (id, name, keylen) VALUES (1, 'sha256', 32);
+INSERT INTO hash_algorithms (name, keylen) VALUES ('sha256', 32);
 
 INSERT INTO users (email, is_blocked, is_deleted, role, pass, salt, count_hash, alg) VALUES ('sergey.ampo@gmail.com', false, false, 1, '026ef2807d1da8e408e742476557cc56f629dcdbc4f6c420910fc7498a841bd0', '.ggs', 3, 1);

@@ -2,3 +2,4 @@ node_modules/
 *.log
 temp/
 config/default.json
+db_data
