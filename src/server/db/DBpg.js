@@ -10,7 +10,6 @@ const path = require('path');
 class DBpg{
     constructor(config, filename){
         this.db = new Client(config);
-
         if(filename) {
             fs.readFile(path.join(__dirname, "../../", "db", filename)).
                 then((data) => {
@@ -56,13 +55,14 @@ class DBpg{
 }
 
 module.exports = DBpg;
+/*
+const config = require('config');
 
-//const config = require('config');
-
-/*async function exec() {
+async function exec() {
     let db = new DBpg(config.db, 'db.pgsql');
     await db.as_connect();
     await db.as_init();
 }
 
-exec();*/
+exec();
+*/
