@@ -228,7 +228,7 @@ var ServerFetch = /*#__PURE__*/function () {
     value: function _dispatchSetUser(user) {
       this._store.dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_0__["setUser"])({
         email: user.email,
-        password: user.isAdmin
+        password: user.password
       }));
     }
   }]);
