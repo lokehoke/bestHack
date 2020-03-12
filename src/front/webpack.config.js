@@ -4,6 +4,7 @@ const Webpack = require('webpack');
 
 const autoprefixer = require('autoprefixer');
 const path = require('path');
+const { copyFileSync } = require('fs');
 
 let config = {
 	watch: false,
@@ -69,7 +70,17 @@ let config = {
 		modules: ['node_modules']
 	},
 	plugins: [
-		new Webpack.NoEmitOnErrorsPlugin()
+		new Webpack.NoEmitOnErrorsPlugin(),
+        {
+            apply: (compiler) => {
+                compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
+                    copyFileSync(__dirname + '/../../public/resources/js/bundle.js',
+                                 __dirname + '/../../src/server/public/resources/js/bundle.js')
+                    copyFileSync(__dirname + '/../../public/resources/js/bundle.js.map',
+                                 __dirname + '/../../src/server/public/resources/js/bundle.js.map')
+                });
+            }
+        }
 	]
 };
 

@@ -9,17 +9,20 @@ const settings = require('./settings/defaultSettings.json');
 
 import App from './components/app.jsx';
 import ServerFetch from './ajax/serverFetch.js';
-
+import { setPath } from './actions/actions.js'
 
 const reducer     = getReducer(settings);
 const store       = createStore(reducer);
 const serverFetch = new ServerFetch(store);
 
+
 class BestHack {
     constructor(selector) {
         this._mountPoint = document.querySelector(selector);
         this._store = store;
-        this._serverFetch = null;
+        this._serverFetch = serverFetch;
+
+        this._store.dispatch(setPath(window.location.pathname));
 
         ReactDOM.render(
            <Provider store={this._store}>
@@ -37,7 +40,6 @@ class BestHack {
             e.preventDefault();
             return false;
         });
-             
     };
 }
 
