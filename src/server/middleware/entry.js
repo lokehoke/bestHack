@@ -13,7 +13,7 @@ class AuthMiddlewares{
     //Redirect to /admin if user is an admin and he is not already on /admin route
     //Else call next middleware
     async as_cookieCheck(req, res, next) {
-        if(!req.cookies['user'] && req.path !== '/auth' && req.path !== '/register') {
+        if(!req.cookies['user'] && req.path === '/') {
             return res.redirect('/auth');
         }
 
@@ -32,7 +32,7 @@ class AuthMiddlewares{
                     }
                     //user_status = user
                     else{
-                        if(req.path !=='/main'){
+                        if(req.path !== '/main'){
                             res.redirect('/main');
                         }
                         else{
@@ -40,13 +40,13 @@ class AuthMiddlewares{
                         }
                     }
                 } else {
-                    res.clearCookie('user');
+                    res.clearCookie('user', { httpOnly: false });
                     next();
                 }
             }
             catch(err){
                 //Executed when there's no cookie or it's corrupted
-                res.clearCookie('user');
+                res.clearCookie('user', { httpOnly: false });
                 next();
             }
         }
@@ -143,7 +143,7 @@ class AuthMiddlewares{
         res.cookie('user',
                     email,
                   { signed: true,
-                    expires: new Date(Date.now() + 900000)
+                    httpOnly: false,
                   });
         next();
     }
