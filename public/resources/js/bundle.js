@@ -1204,9 +1204,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1220,20 +1220,89 @@ var Auth = /*#__PURE__*/function (_React$Component) {
   _inherits(Auth, _React$Component);
 
   function Auth(props) {
+    var _this;
+
     _classCallCheck(this, Auth);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Auth).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Auth).call(this, props));
+    _this.state = {
+      isError: false,
+      kindError: ''
+    };
+    _this._clickEnter = _this._clickEnter.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Auth, [{
+    key: "_validateEmail",
+    value: function _validateEmail(email) {
+      return /\S+@\S+\.\S+/.test(email);
+    }
+  }, {
+    key: "_clickEnter",
+    value: function _clickEnter(e) {
+      e.preventDefault();
+      var email = document.querySelector('#authEmailID');
+      var pass = document.querySelector('#authPassID');
+
+      if (email.value === '') {
+        this.setState({
+          isError: true,
+          kindError: 'emailEmpty'
+        });
+      } else if (!this._validateEmail(email.value)) {
+        this.setState({
+          isError: true,
+          kindError: 'notValidEmail'
+        });
+      } else if (pass.value == '') {
+        this.setState({
+          isError: true,
+          kindError: 'passEmpty'
+        });
+      } else {
+        this.setState({
+          isError: false,
+          kindError: ''
+        });
+        this.props.serverFetch.authFetch({
+          email: email.value,
+          password: pass.value
+        }, function (res) {
+          console.log(res);
+        }, function (res) {
+          console.log(res);
+        });
+      }
+
+      return false;
+    }
+  }, {
     key: "render",
     value: function render() {
+      console.log(this);
       var error = null;
 
-      if (this.props.authError === 'true') {
-        error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "error"
-        }, "\u0437\u0430\u0435\u0431\u0435\u0448\u044C");
+      if (this.state.isError) {
+        switch (this.state.kindError) {
+          case 'emailEmpty':
+            error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "error"
+            }, "\u0412\u044B \u043D\u0435 \u0432\u0432\u0435\u043B\u0438 email.");
+            break;
+
+          case 'notValidEmail':
+            error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "error"
+            }, "\u041D\u0435\u0432\u0430\u043B\u0438\u0434\u043D\u044B\u0439 email.");
+            break;
+
+          case 'passEmpty':
+            error = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "error"
+            }, "\u0412\u044B \u043D\u0435 \u0432\u0432\u0435\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C.");
+            break;
+        }
       }
 
       ;
@@ -1244,23 +1313,23 @@ var Auth = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "exampleInputEmail1"
+        htmlFor: "authEmailID"
       }, "\u041B\u043E\u0433\u0438\u043D:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "form-control",
-        id: "exampleInputEmail1",
+        id: "authEmailID",
         "aria-describedby": "emailHelp"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "exampleInputPassword1"
+        htmlFor: "authPassID"
       }, "\u041F\u0430\u0440\u043E\u043B\u044C:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         className: "form-control",
-        id: "exampleInputPassword1"
+        id: "authPassID"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "auth-btn btn btn-primary"
+        className: "auth-btn btn btn-primary",
+        onClick: this._clickEnter
       }, "\u0412\u043E\u0439\u0442\u0438"), error, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reg-link",
         onClick: this.props.setPath
@@ -1273,12 +1342,6 @@ var Auth = /*#__PURE__*/function (_React$Component) {
 
 ;
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    authError: state.authError
-  };
-};
-
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     setPath: function setPath() {
@@ -1287,7 +1350,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Auth));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(Auth));
 
 /***/ }),
 

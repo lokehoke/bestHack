@@ -100,7 +100,7 @@ class Reg extends React.Component {
 
                     {error}
 
-                    <div className="back-to-auth"><div >Есть аккаунт?</div> <div className="exit" onClick={this.props.setPath}>Вход</div></div>
+                    <div className="back-to-auth"><div >Есть аккаунт?</div> <div className="exit" onClick={this.props.setPath('/auth')}>Вход</div></div>
                 </form>
 
             </div>
@@ -111,7 +111,11 @@ class Reg extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setPath: () => {dispatch(setPath('/auth'))}
+        setPath: path => {
+            return () => {
+                dispatch(setPath(path))
+            }
+        }
     }
 };
 

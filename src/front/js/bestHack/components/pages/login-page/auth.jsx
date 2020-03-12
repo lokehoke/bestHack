@@ -6,37 +6,88 @@ import { setPath } from '../../../actions/actions.js';
 class Auth extends React.Component {
     constructor(props){
         super(props);
+    
+        this.state = {
+            isError: false,
+            kindError: '',
+        };
+        this._clickEnter = this._clickEnter.bind(this);
     };
+
+    _validateEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+    }
+
+    _clickEnter(e) {
+        e.preventDefault();
+
+        let email  = document.querySelector('#authEmailID');
+        let pass = document.querySelector('#authPassID');
+
+        if (email.value === '') {
+            this.setState({
+                isError: true,
+                kindError: 'emailEmpty',
+            });
+        } else if (!this._validateEmail(email.value)) {
+            this.setState({
+                isError: true,
+                kindError: 'notValidEmail',
+            });
+        } else if (pass.value == '') {
+            this.setState({
+                isError: true,
+                kindError: 'passEmpty',
+            });
+        } else {
+            this.setState({
+                isError: false,
+                kindError: '',
+            });
+
+            this.props.serverFetch.authFetch({
+                email: email.value,
+                password: pass.value
+            }, res => {
+                console.log(res);
+            }, res => {
+                console.log(res);
+            });
+        }
+
+        return false;
+    }
+
 
 
     render() {
-
         let error = null;
-        if (this.props.authError === 'true') {
-            error = (
-                <div className="error">заебешь</div>
-            );
+        if (this.state.isError) {
+            switch (this.state.kindError) {
+                case 'emailEmpty': error = (<div className="error">Вы не ввели email.</div>); break;
+                case 'notValidEmail': error = (<div className="error">Невалидный email.</div>); break;
+                case 'passEmpty': error = (<div className="error">Вы не ввели пароль.</div>); break;
+            }
         };
         
 
         return(
             <div className="auth">
-
                 <form className="auth-form">
 
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Логин:</label>
-                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
+                        <label htmlFor="authEmailID">Логин:</label>
+                        <input type="text" className="form-control" id="authEmailID" aria-describedby="emailHelp"></input>
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Пароль:</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1"></input>
+                        <label htmlFor="authPassID">Пароль:</label>
+                        <input type="password" className="form-control" id="authPassID"></input>
                     </div>
                     
-                    <button type="submit" className="auth-btn btn btn-primary">Войти</button>
+                    <button className="auth-btn btn btn-primary" onClick={this._clickEnter}>Войти</button>
                     {error}
-                    <div className="reg-link" onClick={this.props.setPath}>или зарегистрируйтесь</div>
+                    <div className="reg-link" onClick={this.props.setPath('/register')}>или зарегистрируйтесь</div>
                 </form>
 
             </div>
@@ -45,17 +96,15 @@ class Auth extends React.Component {
 };
 
 
-const mapStateToProps = state => {
-    return {
-        authError: state.authError
-    };
-}
-
 const mapDispatchToProps = dispatch => {
     return {
-        setPath: () => dispatch(setPath('/register'))
+        setPath: path => {
+            return () => {
+                dispatch(setPath(path))
+            }
+        }
     };
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(null, mapDispatchToProps)(Auth);
