@@ -95,14 +95,15 @@
 
 .active-pointer {
     width: 11px;
-    height: 11px;
+    height: 10px;
     margin-right: 15px;
+    margin-left: 4px;
 }
 
 .alg-list {
     width: 90%;
     margin-left: auto;
-    margin-right: 0;
+    margin-right: auto;
 }
 .alg-img {
     margin-right: 10px;
@@ -148,4 +149,20 @@
 
 .access-right {
     opacity: 0.3;
+}
+
+
+.user-block{
+    width: 100%;
+}
+
+.alg-item {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+    border-bottom: solid 1px;
+    border-color: #ADADAD;
+    margin-left: auto;
+    margin-right: 0;
 }
