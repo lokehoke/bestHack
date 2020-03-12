@@ -10,14 +10,17 @@ class UsersList extends React.Component {
     };
 
     render() {
-        console.log(this.props);
+       
         return (
-            <div className="users-list">
-                {this.props.users.map((el, id) => (
-                        <UserBlock  key={id}  user={el} isClose={el.isClose} />
-                    )
-                )}
+            <div className="list">
+                <div className="users-list">
+                    {this.props.users.map((el, id) => (
+                            <UserBlock  key={id}  user={el} isClose={el.isClose} />
+                        )
+                    )}
+                </div>
             </div>
+            
 
         )
     }

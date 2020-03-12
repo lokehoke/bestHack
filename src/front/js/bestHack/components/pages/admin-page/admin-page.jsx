@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import UsersManag from './users-manag.jsx';
-import EmptyBlock from './empty-block.jsx';
-import ChosenEmptyBlock from './chosen-user/chosen-empblock.jsx';
+import MainPart from './main-part.jsx';
 
 class AdminPage extends React.Component {
     constructor(props) {
@@ -13,10 +13,19 @@ class AdminPage extends React.Component {
         return(
             <div className="admin-page">
                 <UsersManag />
-                <EmptyBlock />
-            </div> 
+                {this.props.users.map((el, id) => ( <MainPart  key={id}  user={el} isClose={el.isClose}/>))}   
+                
+            </div>   
         );
     };
 };
 
-export default AdminPage;
+
+const mapStateToProps = state => {
+    
+    return {
+        users: state.users
+    }
+};
+
+export default connect(mapStateToProps)(AdminPage);

@@ -7,7 +7,7 @@ const algorithms = {
 class UserPrototype {
     constructor(name, alg, id, isClose = true) {
         this.name = name;
-        this.alg = alg;
+        this.algs = alg;
         this.isClose = isClose;
         this.id = id;
     };
