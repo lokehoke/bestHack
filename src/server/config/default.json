@@ -6,7 +6,7 @@
   },
   "db": {
     "user": "postgres",
-    "host": "localhost",
+    "host": "db",
     "database": "postgres",
     "password": "123"
   },
