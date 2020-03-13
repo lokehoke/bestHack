@@ -8,5 +8,5 @@ $ ./inin.sh
 ```bash
 $ ./install_dep.sh
 ```
-Lalala
-Я буду сотый
+
+SwaggerHub: https://app.swaggerhub.com/apis-docs/OrtinPaler/Best_Hack/v1
