@@ -50,6 +50,12 @@ class DBpg{
         console.log(`User with username: ${userObj.email} were successfully added to the database!`);
     }
 
+    //Save code to the database and return UUID of it
+    async as_setCode(code, user_id, name){
+        const UUID = await this.db.query('INSERT INTO code (code, is_deleted, id_user, name) VALUES ($1, false, $2, $3) RETURNING id', [code, user_id, name]);
+        return UUID.rows[0].id;
+    }
+
     async close(){
         this.db.end();
     }

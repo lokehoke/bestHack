@@ -1,23 +1,24 @@
 'use string';
 
 const fs = require('fs');
+const path = require('path');
 
 class JavaCompiler {
-    constructor(errF, outF) {
+    constructor(cbEmitter) {
         this._code      = '';
-        this._errF      = errF;
-        this._outF      = outF;
         this._child     = null;
         this._data      = [];
         this._err       = [];
         this._filename  = '';
         this._className = '';
+        this._cbEmitter = cbEmitter;
     }
 
     compile(code) {
+        this._mkdirTemp();
         this._code      = ` ${code} `;
         this._prepare(this._code);
-        this._child = require('child_process').spawn('java', [this._filename]);
+        this._child = require('child_process').spawn('java', [path.join(__dirname, this._filename)]);
 
         this._child.stdout.on('data', data => {
             this._data.push(`${data}`);
@@ -28,21 +29,24 @@ class JavaCompiler {
         });
 
         this._child.on('close', code => {
-            if (code) {
-                this._errF(code, this._err);
-            } else {
-                this._outF(this._data);
-            }
+            const outputData = (+code === 0 ? this._data : this._err);
+            this._cbEmitter(code, outputData, this._className);
         });
     }
 
+    _mkdirTemp(){
+        if(!fs.existsSync(path.join(__dirname, '/temp'))){
+            fs.mkdirSync(path.join(__dirname, '/temp'));
+        }
+    }
+
     _prepare(code) {
-        const base = fs.readFileSync('chunk/base.java', 'utf8');
-        const main = fs.readFileSync('chunk/main.java', 'utf8');
+        const base = fs.readFileSync(path.join(__dirname, './chunk/base.java'), 'utf8');
+        const main = fs.readFileSync(path.join(__dirname, './chunk/main.java'), 'utf8');
         this._defClassName();
-        const test = this._getTest();
+        const test = JavaCompiler._getTest();
         this._filename = `temp/${Date.now()}.java`;
-        fs.writeFileSync(this._filename, ` ${main} ${test} }} ${base} ${code} `);
+        fs.writeFileSync(path.join(__dirname, this._filename), ` ${main} ${test} }} ${base} ${code} `);
     }
 
     _defClassName() {
@@ -64,25 +68,45 @@ class JavaCompiler {
             ++end;
         }
 
-        this._className = this._code.substr(index, end - index);
+        this._className = this._code.substr(index, end - index); //Classname
     }
 
-    _getTest() {
+    static _getTest() {
         return ``;
     }
 
 }
 
 if (require.main === module) {
-    const java = new JavaCompiler((code, arr) => {
-        console.log(code);
-        console.log(arr);
-    }, arr => {
-        console.log(arr);
+    const events = require('events');
+    const compileEmitter = new events.EventEmitter();
+    const codeExecute = async function(code){
+        return new Promise((resolve, reject) => {
+
+            const cbCompileEmitter = (statusCode, msg, name) => {
+                const status = (statusCode === 0 ? 'success' : 'failed');
+                compileEmitter.emit(status, msg, name);
+            };
+
+            compileEmitter.on('succcess', (msg, name) => {
+                resolve({message: msg, name: name});
+            });
+
+            compileEmitter.on('failed', (msg, name) => {
+                reject({message: msg, name: name});
+            });
+
+            const compiler = new JavaCompiler(cbCompileEmitter);
+            compiler.compile(code);
+        });
+    };
+    const code = fs.readFileSync('test/1.java', 'utf8');
+    codeExecute(code).then((obj) => {
+        console.log(obj);
+    }).catch((obj) => {
+       console.log(obj);
     });
 
-    const code = fs.readFileSync('test/1.java', 'utf8');
-    java.compile(code);
 }
 
 module.exports = JavaCompiler;
