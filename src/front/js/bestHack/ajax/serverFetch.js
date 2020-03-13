@@ -29,13 +29,24 @@ export default class ServerFetch {
         });
     }
 
+    getUserInfoFetch(onGood = () => {}, onError = () => {}) {
+        fetch('/status', this._getUserFetch({})).then(res => {
+            res.json().then(user => {
+                this._dispatchSetUser(user);
+                onGood(user);
+            });
+        }).catch(err => {
+            onError(err);
+        });
+    }
+
     _getUserFetch(user) {
         return {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({
-                email: user.email,
-                password: user.password,
+                email: user.email || '',
+                password: user.password || '',
             }),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
@@ -44,9 +55,6 @@ export default class ServerFetch {
     }
 
     _dispatchSetUser(user) {
-        this._store.dispatch(setUser({
-            email: user.email,
-            password: user.password,
-        }));
+        this._store.dispatch(setUser(user));
     }
 }

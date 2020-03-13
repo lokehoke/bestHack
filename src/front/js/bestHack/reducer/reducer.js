@@ -26,7 +26,7 @@ const getReducer = (settings) => (state = settings, action) => {
 
 		case 'REGIST_ERROR':
 			return Object.assign({}, state, {
-			 registError: true,
+				registError: true,
 			});
 
 		case 'SET_USER':
@@ -51,7 +51,7 @@ const getReducer = (settings) => (state = settings, action) => {
 			return Object.assign({}, state, {
 				users,
 			});
-			}	
+		}	
 			
 
 		case 'TOGGLE_ALG_WITHBLE':

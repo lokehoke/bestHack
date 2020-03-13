@@ -53,11 +53,13 @@ class Reg extends React.Component {
                 kindError: '',
             });
 
-            this.props.serverFetch.registererFetch({
+            console.log(this.props.serverFetch);
+            this.props.serverFetch.registerFetch({
                 email: email.value,
                 password: pass.value
             }, res => {
-                console.log(res);
+                console.log(res);    
+                this.props.serverFetch.getUserInfoFetch(this.props.setPath('/main'));
             }, res => {
                 console.log(res);
             });
@@ -65,7 +67,6 @@ class Reg extends React.Component {
 
         return false;
     }
-
 
     render() {
         let error = null;

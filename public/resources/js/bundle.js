@@ -216,14 +216,31 @@ var ServerFetch = /*#__PURE__*/function () {
       });
     }
   }, {
+    key: "getUserInfoFetch",
+    value: function getUserInfoFetch() {
+      var _this3 = this;
+
+      var onGood = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
+      var onError = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+      fetch('/status', this._getUserFetch({})).then(function (res) {
+        res.json().then(function (user) {
+          _this3._dispatchSetUser(user);
+
+          onGood(user);
+        });
+      })["catch"](function (err) {
+        onError(err);
+      });
+    }
+  }, {
     key: "_getUserFetch",
     value: function _getUserFetch(user) {
       return {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify({
-          email: user.email,
-          password: user.password
+          email: user.email || '',
+          password: user.password || ''
         }),
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
@@ -233,10 +250,7 @@ var ServerFetch = /*#__PURE__*/function () {
   }, {
     key: "_dispatchSetUser",
     value: function _dispatchSetUser(user) {
-      this._store.dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_0__["setUser"])({
-        email: user.email,
-        password: user.password
-      }));
+      this._store.dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_0__["setUser"])(user));
     }
   }]);
 
@@ -1315,6 +1329,8 @@ var Auth = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_clickEnter",
     value: function _clickEnter(e) {
+      var _this2 = this;
+
       e.preventDefault();
       var email = document.querySelector('#authEmailID');
       var pass = document.querySelector('#authPassID');
@@ -1344,6 +1360,8 @@ var Auth = /*#__PURE__*/function (_React$Component) {
           password: pass.value
         }, function (res) {
           console.log(res);
+
+          _this2.props.serverFetch.getUserInfoFetch(_this2.props.setPath('/main'));
         }, function (res) {
           console.log(res);
         });
@@ -1708,6 +1726,8 @@ var Reg = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_clickEnter",
     value: function _clickEnter(e) {
+      var _this2 = this;
+
       e.preventDefault();
       var email = document.querySelector('#registerEmailID');
       var pass = document.querySelector('#registerPassID');
@@ -1738,11 +1758,14 @@ var Reg = /*#__PURE__*/function (_React$Component) {
           isError: false,
           kindError: ''
         });
-        this.props.serverFetch.registererFetch({
+        console.log(this.props.serverFetch);
+        this.props.serverFetch.registerFetch({
           email: email.value,
           password: pass.value
         }, function (res) {
           console.log(res);
+
+          _this2.props.serverFetch.getUserInfoFetch(_this2.props.setPath('/main'));
         }, function (res) {
           console.log(res);
         });
