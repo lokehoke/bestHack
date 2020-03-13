@@ -8,6 +8,27 @@
     "blokerIsActive": false,
     "selectUser": "",
     "isAlgSelected": false,    
+    "myAlgs":  [
+        {
+            "name": "Sex formula",
+            "code": "vvrtb",
+            "id": "1",
+            "isAlgSelected": false
+        },
+
+        {
+            "name": " cock production",
+            "code": "vvdvrtb",
+            "id": "2",
+            "isAlgSelected": false
+        },
+        {
+            "name": "Awesome eggs ",
+            "code": "vvdvr",
+            "id": "3",
+            "isAlgSelected": false
+        }
+    ],
     "users": 
     [
         {
@@ -65,7 +86,5 @@
                 }
             ]
         }
-
-
     ]
 }
