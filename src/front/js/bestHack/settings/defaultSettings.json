@@ -5,7 +5,10 @@
         "isAdmin": false
     },
     "isLogin": false,
-    "users":
+
+    "blokerIsActive": false,
+    "selectUser": "",    
+    "users": 
     [
         {
             "isClose": true,
