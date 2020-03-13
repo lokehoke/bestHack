@@ -5,6 +5,7 @@ import { Router, Route, Switch } from "react-router";
 
 import LoginPage from './login-page/login-page.jsx';
 import AdminPage from './admin-page/admin-page.jsx';
+import MainPage from './main-page/main-page.jsx';
 
 
 class Main extends React.Component {
@@ -23,6 +24,12 @@ class Main extends React.Component {
             return (
                 <div className="main">
                     <AdminPage />    
+                </div>
+            );
+         } else if (this.props.currentPath === '/main') {
+            return (
+                <div className="main">
+                    <MainPage />    
                 </div>
             );
          };

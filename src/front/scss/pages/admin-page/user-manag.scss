@@ -194,3 +194,20 @@
 .select-alg-item {
     background: $active-btn;
 }
+
+
+.new-alg-btn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-alg-btn-title {
+    width: 85%;
+    border-bottom: solid 1px;
+    border-color: #ADADAD;
+    margin-right: 5%;
+    padding-top: 4%;
+    height: 50px;
+}
