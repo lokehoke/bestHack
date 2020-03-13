@@ -1,7 +1,7 @@
 'use strict';
 
 const { Client } = require('pg');
-const fs = require('mz/fs');
+const fs = require('fs');
 const path = require('path');
 
 /**
@@ -11,12 +11,13 @@ class DBpg{
     constructor(config, filename){
         this.db = new Client(config);
         if(filename) {
-            fs.readFile(path.join(__dirname, "../../", "db", filename)).
-                then((data) => {
-                    this.dump = data.toString();
-            }).catch( err => {
-                console.error(err);
-            });
+            try {
+                const data = fs.readFileSync(path.join(__dirname, '../../', 'db', filename));
+                this.dump = data.toString();
+            }
+            catch(err){
+                console.log(`Error on file read stage ${err}`);
+            }
         }
     }
 
