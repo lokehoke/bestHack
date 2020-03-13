@@ -36,6 +36,14 @@ module.exports = (index) => (async function(){
         AuthMiddleware.sendOk,
         );
 
+    router.get('/algoCode/:UUID/code',
+        middlewares.as_APIcookieCheck.bind(middlewares),
+        middlewares.as_getCodeByUUID.bind(middlewares),
+ //       CodeMiddleware.sendCode
+        );
+
+    router.get('/algoCode/:UUID')
+
     //Error handler
     router.use((err, req, res, next) => {
         console.log(`Error: ${err.message} on data ${JSON.stringify(req.body)}`);
