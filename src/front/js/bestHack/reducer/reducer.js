@@ -97,7 +97,27 @@ const getReducer = (settings) => (state = settings, action) => {
 			return Object.assign({}, state, {
 				blokerIsActive: false
 			});
+		
+		case 'OPEN_MY_ALG': 
+		{
+		let algs = state.myAlgs.map((el) => {
 
+			if (el.id === action.id) {
+				el.isAlgSelected = true;	
+				
+				
+			} else {
+				el.isAlgSelected = false;
+				
+			} 	
+			//console.log('isAlgSelected: ', el.isAlgSelected);
+			return el;
+			});
+			return Object.assign({}, state, {
+				algs,
+			});
+		}
+		
 
 		default:
 			return state;

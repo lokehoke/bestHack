@@ -44,3 +44,7 @@ export const closeBlocker = () => ({
     type: 'CLOSE_BLOCKER',
 })
  
+export const openMyAlg = id => ({
+    type: 'OPEN_MY_ALG',
+    id,
+})
