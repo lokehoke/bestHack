@@ -50,6 +50,7 @@ class Auth extends React.Component {
                 password: pass.value
             }, res => {
                 console.log(res);
+                this.props.serverFetch.getUserInfoFetch(this.props.setPath('/main'));
             }, res => {
                 console.log(res);
             });

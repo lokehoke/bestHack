@@ -25,6 +25,7 @@ class BestHack {
         this._serverFetch = serverFetch;
 
         this._store.dispatch(setPath(window.location.pathname));
+        serverFetch.getUserInfoFetch();
 
         ReactDOM.render(
             <Provider store={this._store}>

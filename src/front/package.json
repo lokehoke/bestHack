@@ -36,6 +36,7 @@
  },
  "homepage": "https://github.com/lokehoke/bestHack#readme",
  "dependencies": {
+  "react-ace": "^8.0.0",
   "react-router": "^5.1.2"
  }
 }

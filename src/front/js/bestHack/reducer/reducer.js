@@ -26,7 +26,7 @@ const getReducer = (settings) => (state = settings, action) => {
 
 		case 'REGIST_ERROR':
 			return Object.assign({}, state, {
-			 registError: true,
+				registError: true,
 			});
 
 		case 'SET_USER':
@@ -51,7 +51,7 @@ const getReducer = (settings) => (state = settings, action) => {
 			return Object.assign({}, state, {
 				users,
 			});
-			}	
+		}	
 			
 
 		case 'TOGGLE_ALG_WITHBLE':
@@ -66,6 +66,7 @@ const getReducer = (settings) => (state = settings, action) => {
 						
 						if (el.id === action.id) {
 							el.isAlgSelected = true;
+							state.isAlgSelected = true;
 							flag = true;							
 						} else {
 							el.isAlgSelected = false;
@@ -76,7 +77,10 @@ const getReducer = (settings) => (state = settings, action) => {
 					});
 
 					el.isUserSelected = flag;
-					console.log('el.isUserSelected: ', el.isUserSelected);
+					if (el.isUserSelected) {
+						state.selectUser = el.name;
+					}
+					//console.log('el.isUserSelected: ', el.isUserSelected);
 
 					return el;
 				});
@@ -86,8 +90,20 @@ const getReducer = (settings) => (state = settings, action) => {
 			});
 			}
 			
+		case 'OPEN_BLOCKER': 
+			return Object.assign({}, state, {
+				blokerIsActive: true
+			});
 		
+		case 'CLOSE_BLOCKER': 
+			return Object.assign({}, state, {
+				blokerIsActive: false
+			});
 
+		case 'SET_ALL_ALGO':
+			return Object.assign({}, state, {
+				// TODO
+			});
 
 		default:
 			return state;

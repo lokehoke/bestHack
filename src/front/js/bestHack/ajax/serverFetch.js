@@ -1,6 +1,6 @@
 'use strict';
 
-import { setUser } from '../actions/actions.js';
+import { setUser, setPath, setAllAlgo } from '../actions/actions.js';
 
 const defStore = {
     dispatch: () => {},
@@ -14,7 +14,10 @@ export default class ServerFetch {
     registerFetch(user, onGood = () => {}, onError = () => {}) {
         fetch('/register', this._getUserFetch(user)).then(res => {
             onGood(res);
-            this._dispatchSetUser(user);
+            console.log(this._store.getState().userInfo);
+            if (this._store.getState().userInfo.role == 1) {
+                this._store.dispatch(setPath('/admin'));
+            }
         }).catch(err => {
             onError(err);
         });
@@ -23,10 +26,39 @@ export default class ServerFetch {
     authFetch(user, onGood = () => {}, onError = () => {}) {
         fetch('/auth', this._getUserFetch(user)).then(res => {
             onGood(res);
-            this._dispatchSetUser(user);
         }).catch(err => {
             onError(err);
         });
+    }
+
+    getUserInfoFetch(onGood = () => {}, onError = () => {}) {
+        fetch('/status', this._getUserFetch({})).then(res => {
+            res.json().then(user => {
+                this._dispatchSetUser(user);
+                onGood(user);
+            });
+        }).catch(err => {
+            onError(err);
+        });
+    }
+
+    getAllAlgo(onGood = () => {}, onError = () => {}) {
+        fetch('/algoCode/all', this._getAllAlgoRec()).then(res => {
+            res.json().then(algos => {
+                this._dispatchAllAlgo(algos);
+                onGood(algos);
+            });
+        });
+    }
+
+    _getAllAlgoRec() {
+        return {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+        };
     }
 
     _getUserFetch(user) {
@@ -34,8 +66,8 @@ export default class ServerFetch {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({
-                email: user.email,
-                password: user.password,
+                email: user.email || '',
+                password: user.password || '',
             }),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
@@ -44,9 +76,10 @@ export default class ServerFetch {
     }
 
     _dispatchSetUser(user) {
-        this._store.dispatch(setUser({
-            email: user.email,
-            password: user.password,
-        }));
+        this._store.dispatch(setUser(user));
+    }
+
+    _dispatchAllAlgo(algos) {
+        this._store.dispatch(setAllAlgo(algos));
     }
 }
