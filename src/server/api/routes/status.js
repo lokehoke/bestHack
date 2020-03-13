@@ -1,10 +1,9 @@
-'use strict';
-
-const AuthMiddleware = require('../../middleware/entry');
+AuthMiddleware = require('../../middleware/entry');
 
 module.exports = (index) => (async function(){
     const { middlewares, router } = index;
-    //Check JSON header -> check cookies -> check code -> save code -> send UUID
+    //Check JSON header -> c\
+    // heck cookies -> check code -> save code -> send UUID
     router.post('/status',
         AuthMiddleware.checkJSONHeader,
         middlewares.as_APIcookieCheck.bind(middlewares),
