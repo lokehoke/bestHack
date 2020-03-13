@@ -14,7 +14,7 @@ class UserHeader extends React.Component {
                 <div className="header-el">
                     <img className="block-img" src="resources/img/block.png" alt="block" onClick={this.props.openBlocker}/>
                     <div className="title"> {this.props.name} </div>
-                    <div className="access-right">Пользователь</div>
+                    <div className="access-right-btn">Пользователь</div>
                 </div>
                
             </div>

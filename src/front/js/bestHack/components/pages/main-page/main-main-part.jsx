@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import SelectedMainPart from './selected-main-part.jsx';
 
 import AceEditor from "react-ace";
 
@@ -15,8 +16,7 @@ class MainMainPart extends React.Component {
         this._sendCode = this._sendCode.bind(this);
     }
 
-    ibymifquip
-    () {
+    _sendCode() {
         this.props.serverFetch.algoCodeFetch(this._value);
         location.reload(); /// fuck
     }
@@ -24,8 +24,26 @@ class MainMainPart extends React.Component {
     _onChangeEditor(val) {
         this._val = val;
     }
-    
+
     render() {
+    // const openAlg = (props) => {
+
+    //     let alg =  null;
+    //     this.props.myAlgs.map((el) => {
+    //     console.log(el.isAlgSelected)
+    //         if (el.isAlgSelected) {
+    //             alg = <SelectedMainPart />;
+    //         } 
+    //         else {
+    //             alg = <div className="choose">Выберите алгоритм</div>;
+    //         }
+
+    //     });
+    //     //console.log('alg: ', alg);
+    //     return alg;
+        
+        
+    // }
 
         let code = '';
         let header = ((props) => {
@@ -61,7 +79,7 @@ class MainMainPart extends React.Component {
                 tabSize: 2,
                 }}/>);
         } else {
-            codeEditor = (<div className="choose">Выберите пользователя </div>) ;
+            codeEditor = (<div className="choose">Выберите алгоритм</div>) ;
         }
 
         return (

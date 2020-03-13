@@ -31,7 +31,7 @@ class App extends React.Component {
                                     <button className="btn-1 blocker-btn">Нет</button>
                                     <button className="blocker-btn">Да</button>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
                     </div>
                 </div>                

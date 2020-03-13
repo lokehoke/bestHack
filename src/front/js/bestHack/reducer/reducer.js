@@ -88,7 +88,20 @@ const getReducer = (settings) => (state = settings, action) => {
 			return Object.assign({}, state, {
 				blokerIsActive: false
 			});
-
+		
+		case 'OPEN_MY_ALG': 
+		{
+			let myAlgs = state.myAlgs.map((el) => {
+				el.isAlgSelected = (el.id === action.id);	
+				return el;
+			});
+	
+			return Object.assign({}, state, {
+				myAlgs,
+				isAlgSelected: true,
+			});
+		}
+		
 		case 'SET_ALL_ALGO':
 			console.log(action.algos);
 			return Object.assign({}, state, {

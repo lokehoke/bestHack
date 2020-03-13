@@ -49,3 +49,7 @@ export const setAllAlgo = algos => ({
     algos,
 });
  
+export const openMyAlg = id => ({
+    type: 'OPEN_MY_ALG',
+    id,
+})
