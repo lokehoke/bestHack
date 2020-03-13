@@ -34,7 +34,7 @@ class App extends React.Component {
                                 <div className="blocked-user"> {this.props.selectUser}? </div>
                                 
                                 <div className="blocker-buttons">
-                                    <button className="btn-1 blocker-btn">Нет</button>
+                                    <button className="btn-1 blocker-btn" onClick={this.props.closeBlocker}>Нет</button>
                                     <button className="blocker-btn">Да</button>
                                 </div>
                                 
