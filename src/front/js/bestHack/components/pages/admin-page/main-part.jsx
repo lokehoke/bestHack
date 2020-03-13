@@ -7,6 +7,8 @@ import "ace-builds/src-noconflict/theme-monokai";
 
 import UserHeader from './chosen-user/user-header.jsx';
 
+import { setAllAlgo } from './../../../actions/actions.js';
+
 function onChange(newValue) {
     console.log("change", newValue);
 }  
@@ -14,6 +16,10 @@ function onChange(newValue) {
 class MainPart extends React.Component {
     constructor(props) {
         super(props);
+
+        this.props.serverFetch.getAllAlgo((algo) => {
+            this.props.serverFetch._store.dispatch(setAllAlgo(algo));
+        });
     }
 
 
@@ -21,15 +27,12 @@ class MainPart extends React.Component {
         //console.log(this.props.users);
         let code = '';
         let header = ((props) => {
-
             let userHeader = null;
             this.props.users.map((el) => {
                 
                 if (el.isUserSelected){
                     userHeader = (<UserHeader name={el.name} />);
-
                     el.algs.forEach((alg) => {
-                        
                         if (alg.isAlgSelected) {
                             console.log(alg);
                             code = alg.code;

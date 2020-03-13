@@ -21,9 +21,9 @@ export const registError = () => ({
     type: 'REGIST-ERROR'
 });
 
-export const setUser = user => ({
+export const setUser = userInfo => ({
     type: 'SET_USER',
-    user,
+    userInfo,
 });
 
 export const ToggleUserWithble = id => ({

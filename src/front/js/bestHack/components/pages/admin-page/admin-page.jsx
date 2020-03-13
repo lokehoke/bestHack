@@ -14,7 +14,7 @@ class AdminPage extends React.Component {
         return(
             <div className="admin-page">
                 <UsersManag />
-                <MainPart  />
+                <MainPart serverFetch={this.props.serverFetch} />
                 {/* {this.props.users.map((el, id) => (
                         <MainPart  key={id}  algs={el.algs}  />
                     )

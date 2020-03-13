@@ -14,7 +14,7 @@ class MainPage extends React.Component {
         return(
             <div className="admin-page">
                 <AlgsManag />
-                <MainMainPart  />
+                <MainMainPart serverFetch={this.props.serverFetch} />
             </div>   
         );
     };
