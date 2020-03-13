@@ -30,7 +30,7 @@ class JavaCompiler {
 
         this._child.on('close', code => {
             const outputData = (+code === 0 ? this._data : this._err);
-            this._cbEmitter(code, outputData, this._className);
+            this._cbEmitter(code, outputData[0], this._className);
         });
     }
 
@@ -85,7 +85,7 @@ if (require.main === module) {
 
             const cbCompileEmitter = (statusCode, msg, name) => {
                 const status = (statusCode === 0 ? 'success' : 'failed');
-                compileEmitter.emit(status, msg, name);
+                compileEmitter.emit(status, msg[0], name);
             };
 
             compileEmitter.on('succcess', (msg, name) => {
