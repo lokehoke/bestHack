@@ -59,7 +59,6 @@ class AuthMiddlewares{
         if(!email) {
             return next(new Error(`You couldn't access api without auth cookies, try /auth or /register`));
         }
-
         else{
             try {
                 const user_obj = await this.auth.db.as_getUser(email);
@@ -281,7 +280,7 @@ class AuthMiddlewares{
             //status = user
             else{
                 if(req.params.user === req.user.email){
-                    req.UUID = await this.auth.db.as_getUUIDByUser(req.params.user).map((e) => e.id);
+                    req.UUID = (await this.auth.db.as_getUUIDByUser(req.params.user)).map((e) => e.id);
                     return next();
                 }
                 //Incorrect passed user - permission denied
@@ -320,6 +319,9 @@ class AuthMiddlewares{
                 const code = await this.auth.db.as_GetCodeByUUID(req.params.UUID);
                 if(code.code && code.name){
                     return next();
+                }
+                else{
+                    return next(new Error('Failed or not uploaded!'));
                 }
             } catch (err) {
                 return next(new Error('Failed or not uploaded!'));
