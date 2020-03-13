@@ -69,7 +69,7 @@ class AuthMiddlewares{
                 }
                 else{
                     res.clearCookie('user', { httpOnly: false });
-                    console.log(`user_obj.email passed cookies for not existing user!`);
+                    console.log(`${user_obj.email} passed cookies for not existing user!`);
                     return next(new Error(`Incorrect auth data`));
                 }
             }
@@ -85,6 +85,10 @@ class AuthMiddlewares{
         res.sendFile('index.html', { root: path.join(__dirname, '../public') });
     }
 
+    static sendUserObject(req, res) {
+        req.user.pass = undefined;
+        res.status(200).json(req.user);
+    }
 
     static checkJSONHeader(req, res, next){
         if (!req.is('json')) {

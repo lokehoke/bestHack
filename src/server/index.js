@@ -30,6 +30,7 @@ const promiseGetAdminRouter = require('./routes/admin');
 
 //API
 const promiseGetAlgoCodeRouter = require('./api/routes/algoCode');
+const promiseGetStatusRouter = require('./api/routes/status');
 
 async function main() {
     const index = await promiseGetIndexRouter();
@@ -40,6 +41,7 @@ async function main() {
 
     //API
     const apiAlgoCode = await promiseGetAlgoCodeRouter(admin);
+    const apiStatus = await promiseGetStatusRouter(apiAlgoCode);
 
     app.use('/', index.router);
     app.use('/auth', auth.router);
@@ -49,6 +51,7 @@ async function main() {
 
     //API
     app.use('/algoCode', apiAlgoCode.router);
+    app.use('/status', apiStatus.router);
 
     app.get('*', (req, res) => { res.sendStatus(404); });
 
