@@ -92,9 +92,7 @@
     cursor: pointer;
 }
 
-.open-user {
-    background: $btn;
-}
+
 
 .pointer {
     width: 15px;
@@ -151,9 +149,18 @@
     margin-bottom: 9px;
 }
 
+.block-img:hover {
+    cursor: pointer;
+}
+
 .access-right {
     opacity: 0.5;
     margin-bottom: 4px;
+}
+
+.access-right:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 
