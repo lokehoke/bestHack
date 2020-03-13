@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 
 import AlgsManag from './algs-manag.jsx';
 import MainMainPart from './main-main-part.jsx';
@@ -14,12 +14,19 @@ class MainPage extends React.Component {
         return(
             <div className="admin-page">
                 <AlgsManag />
-                <MainMainPart  />
+                <MainMainPart serverFetch={this.props.serverFetch} />
             </div>   
         );
     };
 };
 
+const mapStateToProps = state => {
+    
+    return {
+        myAlgs: state.myAlgs,
+        isAlgSelected: state.isAlgSelected,
+    }
+};
 
 
-export default MainPage;
+export default connect(mapStateToProps)(MainPage);

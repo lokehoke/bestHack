@@ -14,7 +14,6 @@ export default class ServerFetch {
     registerFetch(user, onGood = () => {}, onError = () => {}) {
         fetch('/register', this._getUserFetch(user)).then(res => {
             onGood(res);
-            console.log(this._store.getState().userInfo);
             if (this._store.getState().userInfo.role == 1) {
                 this._store.dispatch(setPath('/admin'));
             }
@@ -26,6 +25,13 @@ export default class ServerFetch {
     authFetch(user, onGood = () => {}, onError = () => {}) {
         fetch('/auth', this._getUserFetch(user)).then(res => {
             onGood(res);
+            console.log(this._store.getState());
+            setTimeout( () => {
+                console.log(this._store)
+                if (this._store.getState().userInfo.role == 1) {
+                    this._store.dispatch(setPath('/admin'));
+                }
+            }, 100);
         }).catch(err => {
             onError(err);
         });
@@ -35,7 +41,7 @@ export default class ServerFetch {
         fetch('/status', this._getUserFetch({})).then(res => {
             res.json().then(user => {
                 this._dispatchSetUser(user);
-                onGood(user);
+                onGood(user);   
             });
         }).catch(err => {
             onError(err);
@@ -43,12 +49,34 @@ export default class ServerFetch {
     }
 
     getAllAlgo(onGood = () => {}, onError = () => {}) {
-        fetch('/algoCode/all', this._getAllAlgoRec()).then(res => {
+        fetch('/allData', this._getAllAlgoRec()).then(res => {
             res.json().then(algos => {
+                console.log(1);
+                console.log(algos);
                 this._dispatchAllAlgo(algos);
                 onGood(algos);
             });
         });
+    }
+
+    algoCodeFetch(json, onGood = (res) => { console.log(res.json()); }, onError = (err) => { console.log(err.json()); }) {
+        fetch('/algoCode', ServerFetch._postFetch(json)).then(res => {
+            console.log(1);
+            onGood(res);
+        }).catch(err => {
+            onError(err);
+        });
+    }
+
+    static _postFetch(json) {
+        return {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(json),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+        };
     }
 
     _getAllAlgoRec() {

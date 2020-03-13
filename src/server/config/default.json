@@ -6,9 +6,9 @@
   },
   "db": {
     "user": "postgres",
-    "host": "localhost",
+    "host": "db",
     "database": "postgres",
-    "password": "seregamw1"
+    "password": "123"
   },
   "secretKey": "b3W6l0",
   "dumpName": "db.sql"

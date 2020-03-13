@@ -29,7 +29,7 @@ class Main extends React.Component {
          } else if (this.props.currentPath === '/main') {
             return (
                 <div className="main">
-                    <MainPage />    
+                    <MainPage serverFetch={this.props.serverFetch} />    
                 </div>
             );
          };

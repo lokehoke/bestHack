@@ -21,9 +21,9 @@ export const registError = () => ({
     type: 'REGIST-ERROR'
 });
 
-export const setUser = user => ({
+export const setUser = userInfo => ({
     type: 'SET_USER',
-    user,
+    userInfo,
 });
 
 export const ToggleUserWithble = id => ({
@@ -49,3 +49,7 @@ export const setAllAlgo = algos => ({
     algos,
 });
  
+export const openMyAlg = id => ({
+    type: 'OPEN_MY_ALG',
+    id,
+})

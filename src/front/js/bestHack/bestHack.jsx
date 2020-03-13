@@ -29,7 +29,7 @@ class BestHack {
 
         ReactDOM.render(
             <Provider store={this._store}>
-                <App serverFetch={this._serverFetch}/>
+                <App serverFetch={this._serverFetch} />
             </Provider>,
             this._mountPoint
         );
