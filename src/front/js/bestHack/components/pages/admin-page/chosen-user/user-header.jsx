@@ -7,6 +7,7 @@ class UserHeader extends React.Component {
 
     render() {
         return (
+    
             <div className="user-header">
                 <div className="header-el">
                     <img className="block-img" src="resources/img/block.png" alt="block"/>

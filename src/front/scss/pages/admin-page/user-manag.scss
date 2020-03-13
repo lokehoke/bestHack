@@ -109,14 +109,7 @@
     margin-left: 4px;
 }
 
-.alg-list {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.alg-img {
-    margin-right: 10px;
-}
+
 
 .main-part {
     width: 100%;
@@ -168,13 +161,29 @@
     width: 100%;
 }
 
+.alg-list {
+    width: 90%;
+    margin-left: auto;
+    margin-right: 0;
+}
+.alg-img {
+    margin-right: 10px;
+}
+
 .alg-item {
+    
+    
+}
+
+.alg-border {
     display: flex;
     align-items: center;
-    width: 90%;
+    width: 94%;
     height: 50px;
     border-bottom: solid 1px;
     border-color: #ADADAD;
-    margin-left: auto;
-    margin-right: 0;
+}
+
+.select-alg-item {
+    background: $active-btn;
 }

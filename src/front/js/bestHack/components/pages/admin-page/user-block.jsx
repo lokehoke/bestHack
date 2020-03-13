@@ -2,9 +2,10 @@ import React from 'react';
 import { ToggleUserWithble } from '../../../actions/actions.js';
 import { connect } from 'react-redux';
 
-import AlgList from './chosen-user/alg-list.jsx';
+
 import User from './user.jsx';
 import OpenUser from './chosen-user/open-user.jsx';
+import AlgList from './chosen-user/alg-list.jsx';
 
 class UserBlock extends React.Component {
     constructor(props) {
@@ -46,9 +47,9 @@ class UserBlock extends React.Component {
             return (
                 <div className="user-block">
                     <div className="user open-user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
-                        <OpenUser name={this.props.user.name}/>          
+                        <OpenUser name={this.props.user.name} />          
                     </div>
-                    <AlgList /> 
+                    <AlgList  algs={this.props.user.algs}/> 
                 </div>  
                    
             );
@@ -58,10 +59,18 @@ class UserBlock extends React.Component {
     }
 };
 
+const mapStateToProps = state => {
+    
+    return {
+        users: state.users
+    }
+};
+
+
 const mapDispatchToProps = dispath => {
     return {
         ToggleUserWithble: (id) => {dispath(ToggleUserWithble(id))}
     }
 } 
 
-export default connect(null, mapDispatchToProps)(UserBlock);
+export default connect(mapStateToProps, mapDispatchToProps)(UserBlock);
