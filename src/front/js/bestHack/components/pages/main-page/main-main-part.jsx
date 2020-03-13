@@ -17,7 +17,11 @@ class MainMainPart extends React.Component {
         this.props.myAlgs.map((el) => {
         console.log(el.isAlgSelected)
             if (el.isAlgSelected) {
-                alg = <SelectedMainPart />;
+                alg = (
+                    <div className="menu-part">
+                        <SelectedMainPart />
+                    </div>
+                );
             } 
             else {
                 alg = <div className="choose">Выберите алгоритм</div>;
@@ -33,7 +37,9 @@ class MainMainPart extends React.Component {
         return (
             <div className="col-9">
                 <div className="main-part">
-                    {openAlg(this.props)}
+                <div className="menu-part">
+                        <SelectedMainPart />
+                    </div>
                 </div>
             </div>
         )

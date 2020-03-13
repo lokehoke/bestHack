@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import UserHeader from './chosen-user/user-header.jsx';
+import UserAlgMenu from './chosen-user/user-alg-menu.jsx';
 
 class MainPart extends React.Component {
     constructor(props) {
@@ -14,11 +15,24 @@ class MainPart extends React.Component {
 
         const setHead = (props) => {
 
-            let userHeader = null;
+            let userHeader = (
+                <div className="col-9">
+                    <div className="main-part">
+                        <div className="choose">Выберите пользователя</div>
+                    </div>
+                </div>
+            );
             this.props.users.map((el) => {
                 
                 if (el.isUserSelected){
-                    userHeader = <UserHeader name={el.name} />;
+                    userHeader = (
+                        <div className="col-9">
+                            <UserHeader name={el.name} />
+                            <div className="main-part">
+                                <UserAlgMenu />
+                            </div>
+                        </div>
+                    )
                 }
 
             });
@@ -26,12 +40,7 @@ class MainPart extends React.Component {
         };
 
         return (
-            <div className="col-9">
-                {setHead(this.props)}
-                <div className="main-part">
-                    <div className="choose">Выберите пользователя</div>
-                </div>
-            </div>
+            setHead(this.props)
         )
     }
 };
