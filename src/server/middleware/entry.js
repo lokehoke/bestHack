@@ -85,11 +85,33 @@ class AuthMiddlewares{
         res.sendFile('index.html', { root: path.join(__dirname, '../public') });
     }
 
+    async as_getAll(req, res, next){
+        try {
+            if (req.user.role === 1) {
+                const result = [];
+                const allUsers = await this.auth.db.as_getAllUsers();
+                for(let i = 0; i < allUsers.length; ++i){
+                    const userCodes = await this.auth.db.as_getCodesOfUserId(allUsers[i].id);
+                    allUsers[i].codes = userCodes;
+                    result.push(allUsers[i]);
+                }
+                req.allData = result;
+                next();
+            }
+            else {
+                next(new Error('Permission denied!'));
+            }
+        }
+        catch(err){
+            next(new Error('Failed!'));
+        }
+    }
+
     static sendUserObject(req, res) {
         req.user.pass = undefined;
         req.user.alg = undefined;
         req.user.count_hash = undefined;
-        req.user.salt= undefined;
+        req.user.salt = undefined;
 
         res.status(200).json(req.user);
     }
@@ -159,6 +181,55 @@ class AuthMiddlewares{
         }
     }
 
+
+    async as_deleteCodeByUUID(req, res, next){
+        try{
+            if(!req.params.UUID){
+                return next(new Error('Empty UUID was passed!'));
+            }
+            //If admin
+            if(req.user.role === 1) {
+                await this.auth.db.as_deleteCodeByUUID(req.params.UUID);
+                return next();
+            }
+            //If user
+            else {
+                const UUIDArr = await this.auth.db.as_getUUIDByUser(req.user.email);
+                if(req.params.UUID in UUIDArr){
+                    await this.auth.db.as_deleteCodeByUUID(req.params.UUID);
+                    return next();
+                }
+                else{
+                    return next(new Error('Access denied'));
+                }
+            }
+        }
+        catch(err){
+            next(new Error('Failed!'));
+        }
+    }
+
+    async as_getCodeByUUID(req, res, next){
+        try{
+            if(!req.params.UUID){
+                return next(new Error('Empty UUID was passed!'));
+            }
+            //If admin
+            if(req.user.role === 1){
+                const codeInfo = await this.db._asGetCodeByUUID(req.params.UUID);
+                if(req.code) {
+                    next();
+                }
+                else{
+                    return next(new Error(`Code by this UUID wasn't found!`));
+                }
+            }
+        }
+        catch(err){
+            return next(new Error('Failed!'));
+        }
+    }
+
     //Add user to the database and calculating hash for him. We don't check for database coincidence with the same email!
     async as_registerUser(req, res, next){
         try{
@@ -177,6 +248,36 @@ class AuthMiddlewares{
         catch(err){
             next(err);
         }
+    }
+
+    //If the admin return UUID's of every person
+    //If the user return only his own UUID's in spite of his email request
+    async as_getUUIDForUser(req, res, next){
+        try{
+            if(!req.params.user) {
+                next(new Error(`Email should'nt be empty!`));
+            }
+            const status = (req.user.role === 1 ? 'admin' : 'user');
+            if(status === 'admin'){
+               req.UUID = (await this.auth.db.as_getUUIDByUser(req.params.user)).map((e) => e.id);
+               return next();
+            }
+            //status = user
+            else{
+                if(req.params.user === req.user.email){
+                    req.UUID = await this.auth.db.as_getUUIDByUser(req.params.user).map((e) => e.id);
+                    return next();
+                }
+                //Incorrect passed user - permission denied
+                else{
+                    return next(new Error('Permission denied!'));
+                }
+            }
+        }
+        catch(err){
+            return next(new Error('Failed!'));
+        }
+
     }
 
     static setCookie(req, res, next){
