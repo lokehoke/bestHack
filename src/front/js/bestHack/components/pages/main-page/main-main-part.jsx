@@ -26,25 +26,6 @@ class MainMainPart extends React.Component {
     }
 
     render() {
-    // const openAlg = (props) => {
-
-    //     let alg =  null;
-    //     this.props.myAlgs.map((el) => {
-    //     console.log(el.isAlgSelected)
-    //         if (el.isAlgSelected) {
-    //             alg = <SelectedMainPart />;
-    //         } 
-    //         else {
-    //             alg = <div className="choose">Выберите алгоритм</div>;
-    //         }
-
-    //     });
-    //     //console.log('alg: ', alg);
-    //     return alg;
-        
-        
-    // }
-
         let code = '';
         let header = ((props) => {
             this.props.myAlgs.forEach((alg) => {
@@ -57,29 +38,36 @@ class MainMainPart extends React.Component {
             return null;
         })(this.props);
 
+        console.log(this.props);
         let codeEditor = null;
         if (this.props.isAlgSelected) {
-            codeEditor = (<AceEditor
-                placeholder="code"
-                mode="java"
-                theme="monokai"
-                name="blah2"
-                onLoad={this.onLoad}
-                onChange={this._onChangeEditor}
-                fontSize={16}
-                showPrintMargin={true}
-                showGutter={true}
-                highlightActiveLine={true}
-                value={code}
-                setOptions={{
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                enableSnippets: true,
-                showLineNumbers: true,
-                tabSize: 2,
-                }}/>);
+            codeEditor = (
+                <div className="menu-part">
+                    <AceEditor
+                        placeholder="code"
+                        mode="java"
+                        theme="monokai"
+                        name="blah2"
+                        onLoad={this.onLoad}
+                        onChange={this._onChangeEditor}
+                        fontSize={16}
+                        showPrintMargin={true}
+                        showGutter={true}
+                        highlightActiveLine={true}
+                        value={code}
+                        setOptions={{
+                        enableBasicAutocompletion: true,
+                        enableLiveAutocompletion: true,
+                        enableSnippets: true,
+                        showLineNumbers: true,
+                        tabSize: 2,
+                        }}
+                    />
+                    <SelectedMainPart />
+                </div>
+            );
         } else {
-            codeEditor = (<div className="choose">Выберите алгоритм</div>) ;
+            codeEditor = (<div className="menu-part"><div className="choose">Выберите алгоритм</div></div>) ;
         }
 
         return (
@@ -97,6 +85,7 @@ class MainMainPart extends React.Component {
 const mapStateToProps = state => {
     return {
         myAlgs: state.myAlgs,
+        isAlgSelected: state.isAlgSelected,
     }
 };
 

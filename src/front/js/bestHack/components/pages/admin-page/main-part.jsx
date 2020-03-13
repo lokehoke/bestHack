@@ -6,6 +6,7 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-monokai";
 
 import UserHeader from './chosen-user/user-header.jsx';
+import UserAlgMenu from './chosen-user/user-alg-menu.jsx';
 
 import { setAllAlgo } from './../../../actions/actions.js';
 
@@ -22,30 +23,45 @@ class MainPart extends React.Component {
         });
     }
 
-
     render() {
-        //console.log(this.props.users);
         let code = '';
         let header = ((props) => {
             let userHeader = null;
             this.props.users.map((el) => {
-                
                 if (el.isUserSelected){
                     userHeader = (<UserHeader name={el.name} />);
                     el.algs.forEach((alg) => {
                         if (alg.isAlgSelected) {
-                            console.log(alg);
                             code = alg.code;
-                            console.log(code);
                         }
                     });
-
-                    console.log(code)
                 }
+            })
+        });
+        // const setHead = (props) => {
+        //     let userHeader = (
+        //         <div className="col-9">
+        //             <div className="main-part">
+        //                 <div className="choose">Выберите пользователя</div>
+        //             </div>
+        //         </div>
+        //     );
+        //     this.props.users.map((el) => {
+                
+        //         if (el.isUserSelected){
+        //             userHeader = (
+        //                 <div className="col-9">
+        //                     <UserHeader name={el.name} />
+        //                     <div className="main-part">
+        //                         <UserAlgMenu />
+        //                     </div>
+        //                 </div>
+        //             )
+        //         }
 
-            });
-            return userHeader;
-        })(this.props);
+        //     });
+        //     return userHeader;
+        // })(this.props);
 
 
         let codeEditor = null;
@@ -80,7 +96,7 @@ class MainPart extends React.Component {
                     {codeEditor}
                 </div>
             </div>
-        )
+        );
     }
 };
 
