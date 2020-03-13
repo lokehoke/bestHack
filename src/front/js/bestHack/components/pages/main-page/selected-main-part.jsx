@@ -13,7 +13,7 @@ class SelectedMainPart extends React.Component {
             
             <div className="alg-menu">
                 <div className="menu-buttons">
-                    <button className="menu-btn menu-btn-1 ">Запуск</button>
+                    <button className="menu-btn menu-btn-1" onClick={this.props.start}>Запуск</button>
                     <div>
                         <button className="menu-btn menu-btn-2">Сохранить</button>
                         <button className="menu-btn menu-btn-3">Удалить</button>

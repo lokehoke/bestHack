@@ -61,10 +61,22 @@ export default class ServerFetch {
 
     algoCodeFetch(json, onGood = (res) => { console.log(res.json()); }, onError = (err) => { console.log(err.json()); }) {
         fetch('/algoCode', ServerFetch._postFetch(json)).then(res => {
+            console.log(1);
             onGood(res);
         }).catch(err => {
             onError(err);
         });
+    }
+
+    static _postFetch(json) {
+        return {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(json),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+        };
     }
 
     _getAllAlgoRec() {

@@ -18,13 +18,10 @@ class AlgsList extends React.Component {
                 </div>
                 <div className="list">
                     <div className="users-list">
-                        
-                    {this.props.myAlgs.map((el, id) => (
-                            <Alg  key={id}  alg={el} />
-                        )
-                    )}
-                        
-                    
+                        {this.props.myAlgs.map((el, id) => (
+                                <Alg  key={id}  alg={el} />
+                            )
+                        )}
                     </div>
                 </div>    
             

@@ -17,12 +17,14 @@ class MainMainPart extends React.Component {
     }
 
     _sendCode() {
-        this.props.serverFetch.algoCodeFetch(this._value);
-        location.reload(); /// fuck
+        this.props.serverFetch.algoCodeFetch({
+            code: this._value,
+        });
+        // location.reload(); /// fuck
     }
 
     _onChangeEditor(val) {
-        this._val = val;
+        this._value = val;
     }
 
     render() {
@@ -63,7 +65,7 @@ class MainMainPart extends React.Component {
                         tabSize: 2,
                         }}
                     />
-                    <SelectedMainPart />
+                    <SelectedMainPart start={this._sendCode} />
                 </div>
             );
         } else {
