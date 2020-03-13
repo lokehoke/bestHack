@@ -1,6 +1,6 @@
 'use strict';
 
-import { setUser } from '../actions/actions.js';
+import { setUser, setPath } from '../actions/actions.js';
 
 const defStore = {
     dispatch: () => {},
@@ -14,7 +14,10 @@ export default class ServerFetch {
     registerFetch(user, onGood = () => {}, onError = () => {}) {
         fetch('/register', this._getUserFetch(user)).then(res => {
             onGood(res);
-            this._dispatchSetUser(user);
+            console.log(this._store.getState().userInfo);
+            if (this._store.getState().userInfo.role == 1) {
+                this._store.dispatch(setPath('/admin'));
+            }
         }).catch(err => {
             onError(err);
         });
@@ -23,7 +26,6 @@ export default class ServerFetch {
     authFetch(user, onGood = () => {}, onError = () => {}) {
         fetch('/auth', this._getUserFetch(user)).then(res => {
             onGood(res);
-            this._dispatchSetUser(user);
         }).catch(err => {
             onError(err);
         });

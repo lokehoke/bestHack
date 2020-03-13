@@ -194,8 +194,11 @@ var ServerFetch = /*#__PURE__*/function () {
       var onError = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
       fetch('/register', this._getUserFetch(user)).then(function (res) {
         onGood(res);
+        console.log(_this._store.getState().userInfo);
 
-        _this._dispatchSetUser(user);
+        if (_this._store.getState().userInfo.role == 1) {
+          _this._store.dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_0__["setPath"])('/admin'));
+        }
       })["catch"](function (err) {
         onError(err);
       });
@@ -203,14 +206,10 @@ var ServerFetch = /*#__PURE__*/function () {
   }, {
     key: "authFetch",
     value: function authFetch(user) {
-      var _this2 = this;
-
       var onGood = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
       var onError = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
       fetch('/auth', this._getUserFetch(user)).then(function (res) {
         onGood(res);
-
-        _this2._dispatchSetUser(user);
       })["catch"](function (err) {
         onError(err);
       });
@@ -218,13 +217,13 @@ var ServerFetch = /*#__PURE__*/function () {
   }, {
     key: "getUserInfoFetch",
     value: function getUserInfoFetch() {
-      var _this3 = this;
+      var _this2 = this;
 
       var onGood = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
       var onError = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
       fetch('/status', this._getUserFetch({})).then(function (res) {
         res.json().then(function (user) {
-          _this3._dispatchSetUser(user);
+          _this2._dispatchSetUser(user);
 
           onGood(user);
         });
@@ -310,6 +309,7 @@ var BestHack = function BestHack(selector) {
 
   this._store.dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_7__["setPath"])(window.location.pathname));
 
+  serverFetch.getUserInfoFetch();
   react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_0__["Provider"], {
     store: this._store
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_app_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
