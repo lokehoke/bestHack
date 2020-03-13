@@ -5,8 +5,8 @@
         "isAdmin": false
     },
     "isLogin": false,
-    "authError": false,
-    "registerError": false,
+    "blokerIsActive": false,
+    "selectUser": "",
     
     "users": 
     [

@@ -36,4 +36,11 @@ export const ToggleAlgWithble = id => ({
     id,
 });
 
+export const openBlocker = () => ({
+    type: 'OPEN_BLOCKER',
+})
+
+export const closeBlocker = () => ({
+    type: 'CLOSE_BLOCKER',
+})
  

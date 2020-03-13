@@ -75,7 +75,10 @@ const getReducer = (settings) => (state = settings, action) => {
 					});
 
 					el.isUserSelected = flag;
-					console.log('el.isUserSelected: ', el.isUserSelected);
+					if (el.isUserSelected) {
+						state.selectUser = el.name;
+					}
+					//console.log('el.isUserSelected: ', el.isUserSelected);
 
 					return el;
 				});
@@ -85,7 +88,15 @@ const getReducer = (settings) => (state = settings, action) => {
 			});
 			}
 			
+		case 'OPEN_BLOCKER': 
+			return Object.assign({}, state, {
+				blokerIsActive: true
+			});
 		
+		case 'CLOSE_BLOCKER': 
+			return Object.assign({}, state, {
+				blokerIsActive: false
+			});
 
 
 		default:
