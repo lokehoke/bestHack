@@ -30,6 +30,7 @@ module.exports = (index) => (async function(){
         CodeMiddleware.sendAll
     );
 
+
     router.delete('/algoCode/:UUID/',
         middlewares.as_APIcookieCheck.bind(middlewares),
         middlewares.as_deleteCodeByUUID.bind(middlewares),
@@ -39,10 +40,13 @@ module.exports = (index) => (async function(){
     router.get('/algoCode/:UUID/code',
         middlewares.as_APIcookieCheck.bind(middlewares),
         middlewares.as_getCodeByUUID.bind(middlewares),
- //       CodeMiddleware.sendCode
-        );
+        CodeMiddleware.sendCode,
+    );
 
-    router.get('/algoCode/:UUID')
+    router.get('/algoCode/:UUID/status',
+        middlewares.as_getCodeStatusByUUID.bind(middlewares),
+        AuthMiddleware.sendOk,
+    );
 
     //Error handler
     router.use((err, req, res, next) => {

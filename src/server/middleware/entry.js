@@ -27,7 +27,7 @@ class AuthMiddlewares{
                             res.redirect('/admin');
                         }
                         else{
-                            next();
+                            return next();
                         }
                     }
                     //user_status = user
@@ -36,18 +36,18 @@ class AuthMiddlewares{
                             res.redirect('/main');
                         }
                         else{
-                            next();
+                            return next();
                         }
                     }
                 } else {
                     res.clearCookie('user', { httpOnly: false });
-                    next();
+                    return next();
                 }
             }
             catch(err){
                 //Executed when there's no cookie or it's corrupted
                 res.clearCookie('user', { httpOnly: false });
-                next();
+                return next();
             }
         }
     }
@@ -76,7 +76,7 @@ class AuthMiddlewares{
             catch(err){
                 //Executed when there's no cookie or it's corrupted
                 res.clearCookie('user', { httpOnly: false });
-                next(new Error("Something is wrong!"));
+                return next(new Error("Something is wrong!"));
             }
         }
     }
@@ -96,14 +96,28 @@ class AuthMiddlewares{
                     result.push(allUsers[i]);
                 }
                 req.allData = result;
-                next();
+                return next();
             }
             else {
-                next(new Error('Permission denied!'));
+                return next(new Error('Permission denied!'));
             }
         }
         catch(err){
-            next(new Error('Failed!'));
+            return next(new Error('Failed!'));
+        }
+    }
+
+    async as_getAllUsers(req, res, next) {
+        try {
+            if (req.user.role === 1) {
+                req.allData = await this.auth.db.as_getAllUsers();
+                return next();
+            } else {
+                return next(new Error('Permission denied!'));
+            }
+        }
+        catch(err){
+            return next(new Error('Failed!'));
         }
     }
 
@@ -216,8 +230,10 @@ class AuthMiddlewares{
             }
             //If admin
             if(req.user.role === 1){
-                const codeInfo = await this.db._asGetCodeByUUID(req.params.UUID);
-                if(req.code) {
+                const codeInfo = await this.auth.db.as_GetCodeByUUID(req.params.UUID);
+                if(codeInfo) {
+                    req.code = codeInfo.code;
+                    req.name = codeInfo.name;
                     next();
                 }
                 else{
@@ -293,6 +309,22 @@ class AuthMiddlewares{
     static sendOk(req, res){
         res.status(200);
         res.json({ message: "Successful action!"});
+    }
+
+    async as_getCodeStatusByUUID(req, res, next){
+        if(!req.params.UUID) {
+            return next(new Error(`UUID shouldn't be empty!`));
+        }
+        else {
+            try {
+                const code = await this.auth.db.as_GetCodeByUUID(req.params.UUID);
+                if(code.code && code.name){
+                    return next();
+                }
+            } catch (err) {
+                return next(new Error('Failed or not uploaded!'));
+            }
+        }
     }
 
     //Save code and return UUID

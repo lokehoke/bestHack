@@ -48,6 +48,10 @@ class CodeMiddleware{
         }
     }
 
+    static sendCode(req, res){
+        res.status(200).json({code: req.code, name: req.name});
+    }
+
     static async _as_codeExecute(code){
         return new Promise((resolve, reject) => {
 
