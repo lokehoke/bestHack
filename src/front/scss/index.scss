@@ -1,6 +1,11 @@
 @import 'default/reset';
 @import '../node_modules/bootstrap/scss/bootstrap';
 
+.ace_editor {
+    width: 100% !important;
+    height: 100% !important;
+}
+
 .wrapper {
     width: 100%;
     height: 100%;

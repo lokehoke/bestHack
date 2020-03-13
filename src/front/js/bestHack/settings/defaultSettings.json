@@ -5,9 +5,9 @@
         "isAdmin": false
     },
     "isLogin": false,
-
     "blokerIsActive": false,
-    "selectUser": "",    
+    "selectUser": "",
+    "isAlgSelected": false,    
     "users": 
     [
         {

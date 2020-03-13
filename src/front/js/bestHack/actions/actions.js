@@ -38,9 +38,14 @@ export const ToggleAlgWithble = id => ({
 
 export const openBlocker = () => ({
     type: 'OPEN_BLOCKER',
-})
+});
 
 export const closeBlocker = () => ({
     type: 'CLOSE_BLOCKER',
-})
+});
+
+export const setAllAlgo = algos => ({
+    type: 'SET_ALL_ALGO',
+    algos,
+});
  

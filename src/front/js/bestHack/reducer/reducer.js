@@ -66,6 +66,7 @@ const getReducer = (settings) => (state = settings, action) => {
 						
 						if (el.id === action.id) {
 							el.isAlgSelected = true;
+							state.isAlgSelected = true;
 							flag = true;							
 						} else {
 							el.isAlgSelected = false;
@@ -99,6 +100,10 @@ const getReducer = (settings) => (state = settings, action) => {
 				blokerIsActive: false
 			});
 
+		case 'SET_ALL_ALGO':
+			return Object.assign({}, state, {
+				// TODO
+			});
 
 		default:
 			return state;

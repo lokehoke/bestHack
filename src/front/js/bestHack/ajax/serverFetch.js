@@ -1,6 +1,6 @@
 'use strict';
 
-import { setUser, setPath } from '../actions/actions.js';
+import { setUser, setPath, setAllAlgo } from '../actions/actions.js';
 
 const defStore = {
     dispatch: () => {},
@@ -42,6 +42,25 @@ export default class ServerFetch {
         });
     }
 
+    getAllAlgo(onGood = () => {}, onError = () => {}) {
+        fetch('/algoCode/all', this._getAllAlgoRec()).then(res => {
+            res.json().then(algos => {
+                this._dispatchAllAlgo(algos);
+                onGood(algos);
+            });
+        });
+    }
+
+    _getAllAlgoRec() {
+        return {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+        };
+    }
+
     _getUserFetch(user) {
         return {
             method: 'POST',
@@ -58,5 +77,9 @@ export default class ServerFetch {
 
     _dispatchSetUser(user) {
         this._store.dispatch(setUser(user));
+    }
+
+    _dispatchAllAlgo(algos) {
+        this._store.dispatch(setAllAlgo(algos));
     }
 }
