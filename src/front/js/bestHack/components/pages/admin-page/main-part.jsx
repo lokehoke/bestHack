@@ -29,7 +29,11 @@ class MainPart extends React.Component {
                         <div className="col-9">
                             <UserHeader name={el.name} />
                             <div className="main-part">
-                                <UserAlgMenu />
+                                
+                                <div className="menu-part">
+                                    <UserAlgMenu />
+                                </div>
+                               
                             </div>
                         </div>
                     )

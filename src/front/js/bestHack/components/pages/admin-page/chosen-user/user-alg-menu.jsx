@@ -12,7 +12,7 @@ class UserAlgMenu extends React.Component {
             <div className="alg-menu">
                 <div className="menu-buttons">
                    
-                    <button className="menu-btn menu-btn-3">Удалить</button>
+                    <button className="menu-btn user-menu-btn-3">Удалить</button>
                     
                    
                 </div>
