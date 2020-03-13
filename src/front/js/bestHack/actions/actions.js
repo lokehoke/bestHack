@@ -31,4 +31,9 @@ export const ToggleUserWithble = id => ({
     id,
 });
 
+export const ToggleAlgWithble = id => ({
+    type: 'TOGGLE_ALG_WITHBLE',
+    id,
+});
+
  

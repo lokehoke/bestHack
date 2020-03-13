@@ -9,17 +9,21 @@ class AdminPage extends React.Component {
         super(props);
     }
 
+    
     render() {
         return(
             <div className="admin-page">
                 <UsersManag />
-                {this.props.users.map((el, id) => ( <MainPart  key={id}  user={el} isClose={el.isClose}/>))}   
-                
+                <MainPart  />
+                {/* {this.props.users.map((el, id) => (
+                        <MainPart  key={id}  algs={el.algs}  />
+                    )
+                )} */}
+
             </div>   
         );
     };
 };
-
 
 const mapStateToProps = state => {
     

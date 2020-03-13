@@ -7,25 +7,33 @@
     "isLogin": false,
     "authError": false,
     "registerError": false,
+    
     "users": 
     [
         {
             "isClose": true,
             "id": "213",
-            "name": "Biba Boba",
+            "name": "Biba",
+            "isUserSelected": false,
             "algs": [
                 {
                     "name": "Sex formula",
-                    "code": "vvrtb"
+                    "code": "vvrtb",
+                    "id": "1",
+                    "isAlgSelected": false
                 },
 
                 {
-                    "name": "Nice cock production",
-                    "code": "vvdvrtb"
+                    "name": " cock production",
+                    "code": "vvdvrtb",
+                    "id": "2",
+                    "isAlgSelected": false
                 },
                 {
-                    "name": "Awesome eggs industry",
-                    "code": "vvdvr"
+                    "name": "Awesome eggs ",
+                    "code": "vvdvr",
+                    "id": "3",
+                    "isAlgSelected": false
                 }
             ]
         },
@@ -33,64 +41,32 @@
         {
             "isClose": true,
             "id": "2414",
-            "name": "Biba Boba",
+            "name": "Boba",
+            "isUserSelected": false,
             "algs": [
                 {
                     "name": "Sex formula",
-                    "code": "vvrtb"
+                    "code": "vvrtb",
+                    "id": "4",
+                    "isAlgSelected": false
                 },
 
                 {
                     "name": "Nice cock production",
-                    "code": "vvdvrtb"
+                    "code": "vvdvrtb",
+                    "id": "5",
+                    "isAlgSelected": false
                 },
                 {
                     "name": "Awesome eggs industry",
-                    "code": "vvdvr"
-                }
-            ]
-        },
-
-        {
-            "isClose": true,
-            "id": "2143",
-            "name": "Biba Boba",
-            "algs": [
-                {
-                    "name": "Sex formula",
-                    "code": "vvrtb"
-                },
-
-                {
-                    "name": "Nice cock production",
-                    "code": "vvdvrtb"
-                },
-                {
-                    "name": "Awesome eggs industry",
-                    "code": "vvdvr"
-                }
-            ]
-        },
-
-        {
-            "isClose": true,
-            "id": "2314",
-            "name": "Biba Boba",
-            "algs": [
-                {
-                    "name": "Sex formula",
-                    "code": "vvrtb"
-                },
-
-                {
-                    "name": "Nice cock production",
-                    "code": "vvdvrtb"
-                },
-                {
-                    "name": "Awesome eggs industry",
-                    "code": "vvdvr"
+                    "code": "vvdvr",
+                    "id": "6",
+                    "isAlgSelected": false
                 }
             ]
         }
+
+      
     ]
 }
+    

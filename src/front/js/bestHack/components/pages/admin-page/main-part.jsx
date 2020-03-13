@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import UserHeader from './chosen-user/user-header.jsx';
 
@@ -9,13 +10,19 @@ class MainPart extends React.Component {
 
 
     render() {
+        //console.log(this.props.users);
 
         const setHead = (props) => {
-            if (!this.props.user.isClose){
-                return (<UserHeader name={this.props.user.name}/>);
-            } else {
-                return null;
-            }
+
+            let userHeader = null;
+            this.props.users.map((el) => {
+                
+                if (el.isUserSelected){
+                    userHeader = <UserHeader name={el.name} />;
+                }
+
+            });
+            return userHeader;
         };
 
         return (
@@ -29,4 +36,11 @@ class MainPart extends React.Component {
     }
 };
 
-export default MainPart;
+const mapStateToProps = state => {
+    
+    return {
+        users: state.users
+    }
+};
+
+export default connect(mapStateToProps)(MainPart);

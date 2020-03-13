@@ -1,5 +1,6 @@
 'use strict';
 const getReducer = (settings) => (state = settings, action) => {
+	console.log(action);
 	switch(action.type) {
 		
 		case 'SET_PATH':
@@ -35,13 +36,13 @@ const getReducer = (settings) => (state = settings, action) => {
 
 			
 		case 'TOGGLE_USER_WITHBLE':
-				
+			{
 				let users = state.users.map((el) => {
 
 				if (el.id === action.id) {
-					el.isClose = !el.isClose;
-					console.log('el.isClose: ', el.isClose);
-				}
+					el.isClose = !el.isClose;	
+					//console.log('el.isClose: ', el.isClose);
+				} 
 				
 				return el;
 			});
@@ -49,6 +50,41 @@ const getReducer = (settings) => (state = settings, action) => {
 			return Object.assign({}, state, {
 				users,
 			});
+			}	
+			
+
+		case 'TOGGLE_ALG_WITHBLE':
+			{
+				let users = state.users.map((el) => {
+
+					let flag = false;
+					//console.log('flag: ', flag);
+
+					el.algs = el.algs.map((el, id) => {
+						//console.log(el);
+						
+						if (el.id === action.id) {
+							el.isAlgSelected = true;
+							flag = true;							
+						} else {
+							el.isAlgSelected = false;
+							//flag = false;
+						} 						
+						//console.log('el.isAlgSelected : ', el.isAlgSelected );
+						return el;
+					});
+
+					el.isUserSelected = flag;
+					console.log('el.isUserSelected: ', el.isUserSelected);
+
+					return el;
+				});
+			
+			return Object.assign({}, state, {
+				users,
+			});
+			}
+			
 		
 
 
