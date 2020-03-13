@@ -1,7 +1,6 @@
 'use strict';
 
-//process.env.DBDUMP = true; //Remove this
-const dbDump = process.env.DBDUMP || false;
+const dbDump = process.env.DBDUMP || true;
 
 const DBpg = require('./db/DBpg');
 const Auth = require('./auth/Auth');
@@ -14,7 +13,7 @@ async function authInitialize(db_cfg){
     await db.as_connect();
     if(!dbDump) {
       await db.as_init();
-      console.log(`Database is successfully fullfiled!`);
+      console.log(`Database is successfully fulfilled!`);
     }
     return new Auth(db);
   }

@@ -82,7 +82,7 @@ class AuthMiddlewares{
     }
 
     static sendIndex(req, res) {
-        res.sendFile('index.html', { root: path.join(__dirname, '../public') });
+        res.sendFile('index2.html', { root: path.join(__dirname, '../public') });
     }
 
 

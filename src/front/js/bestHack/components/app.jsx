@@ -11,7 +11,14 @@ class App extends React.Component {
 
     render() {
         return (
-            <Main serverFetch={this.props.serverFetch} />
+            <div className="app">
+                <div className="blocker">
+                    <div className="col-9">
+
+                    </div>
+                </div>
+                <Main  serverFetch={this.props.serverFetch}/>
+            </div>
         );
     };
 };
