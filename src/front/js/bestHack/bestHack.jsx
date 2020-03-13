@@ -37,11 +37,6 @@ class BestHack {
             e.preventDefault();
             return false;
         });
-
-        document.addEventListener('contextmenu', e => {
-            e.preventDefault();
-            return false;
-        });
     };
 }
 
