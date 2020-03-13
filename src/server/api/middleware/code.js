@@ -40,7 +40,6 @@ class CodeMiddleware{
     //if the code was successfully compiled -> next
     //else call error handling mw
     static isCodeCompiled(req, res, next){
-//        if(req.compiled.is) { //RETURN DONT COMMIT
         if(req.compiled.is) {
             return next();
         }
