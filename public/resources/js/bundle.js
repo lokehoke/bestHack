@@ -2463,6 +2463,7 @@ var MainMainPart = /*#__PURE__*/function (_React$Component) {
   _createClass(MainMainPart, [{
     key: "_sendCode",
     value: function _sendCode() {
+      console.log(this._value);
       this.props.serverFetch.algoCodeFetch({
         code: this._value
       }); // location.reload(); /// fuck
@@ -2491,6 +2492,7 @@ var MainMainPart = /*#__PURE__*/function (_React$Component) {
         return null;
       }(this.props);
 
+      this._value = code;
       console.log(this.props);
       var codeEditor = null;
 

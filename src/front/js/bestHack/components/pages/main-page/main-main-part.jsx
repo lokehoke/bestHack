@@ -17,6 +17,7 @@ class MainMainPart extends React.Component {
     }
 
     _sendCode() {
+        console.log(this._value)
         this.props.serverFetch.algoCodeFetch({
             code: this._value,
         });
@@ -24,6 +25,7 @@ class MainMainPart extends React.Component {
     }
 
     _onChangeEditor(val) {
+
         this._value = val;
     }
 
@@ -39,6 +41,8 @@ class MainMainPart extends React.Component {
             });
             return null;
         })(this.props);
+
+        this._value = code;
 
         console.log(this.props);
         let codeEditor = null;
