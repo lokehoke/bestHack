@@ -12,48 +12,62 @@ class UserBlock extends React.Component {
         super(props);
     };
 
+
+        // if (this.props.user.isClose) {
+    //     return (  
+    //         <div className="user-block">
+                // <div className="user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
+                //     <User name={this.props.user.name}/>       
+                // </div>
+    //         </div>        
+    //     );
+    // } else {
+    //     return (
+    //         <div className="user-block">
+                // <div className="user open-user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
+                //     <OpenUser name={this.props.user.name} />          
+                // </div>
+                // <AlgList  algs={this.props.user.algs}/> 
+    //         </div>  
+                
+    //     );
+    // }
+
     render() {
-        // const openClose = (props) => {
-        //     if (this.props.user.isClose) {
-        //         return (  
-        //             <User name={this.props.user.name}/>         
-        //         );
-        //     } else {
-        //         return (
-        //             <OpenUser name={this.props.user.name}/>  
-        //             <AlgList />     
-        //         );
-        //     }
-        // }
+        const openClose = (props) => {
+
+            let userItem = 
+                (
+                    <div className="user-block">
+                        <div className="user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
+                            <User name={this.props.user.name}/>       
+                        </div> 
+                    </div> 
+                )
+
+
+            if (!this.props.user.isClose) {
+                userItem = 
+                   (
+                        <div className="user-block">
+                            <div className="user open-user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
+                                <OpenUser name={this.props.user.name} />          
+                            </div>
+                            <AlgList  algs={this.props.user.algs}/> 
+                        </div> 
+                   )
+                };
+
+                return userItem;
+        }
+        
         
 
-        // return (
-        //     <div className="user-block">
-        //         <div className="user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
-        //             {openClose(this.props)}  
-        //         </div>
-        //     </div>
-        // );
+        return (
+            openClose(this.props)
+        )
     
-        if (this.props.user.isClose) {
-            return (  
-                <div className="user-block">
-                    <div className="user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
-                        <User name={this.props.user.name}/>       
-                    </div>
-                </div>        
-            );
-        } else {
-            return (
-                <div className="user-block">
-                    <div className="user open-user" onClick={() => {this.props.ToggleUserWithble(this.props.user.id)}}>
-                        <OpenUser name={this.props.user.name} />          
-                    </div>
-                    <AlgList  algs={this.props.user.algs}/> 
-                </div>  
-                   
-            );
-        }
+
     
     
     }

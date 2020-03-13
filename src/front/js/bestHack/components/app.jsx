@@ -11,7 +11,16 @@ class App extends React.Component {
 
     render() {
         return (
-            <Main />
+            <div className="app">
+                <div className="blocker">
+                    <div className="col-9">
+                
+                    </div>
+                </div>
+                <Main />
+            </div>
+            
+         
         );
     };
 };
