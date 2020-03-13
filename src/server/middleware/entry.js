@@ -13,7 +13,7 @@ class AuthMiddlewares{
     //Redirect to /admin if user is an admin and he is not already on /admin route
     //Else call next middleware
     async as_cookieCheck(req, res, next) {
-        if(!req.cookies['user'] && req.path === '/') {
+        if(!req.signedCookies['user'] && req.path !== '/auth' && req.path !== '/register') {
             return res.redirect('/auth');
         }
 
@@ -52,18 +52,52 @@ class AuthMiddlewares{
         }
     }
 
+    //Check cookies if correct send to the next middlewares with fetched user data
+    //another way call error handling middleware
+    async as_APIcookieCheck(req, res, next){
+        const email = req.signedCookies['user'];
+        if(!email) {
+            return next(new Error(`You couldn't access api without auth cookies, try /auth or /register`));
+        }
+
+        else{
+            try {
+                const user_obj = await this.auth.db.as_getUser(email);
+                if (user_obj) {
+                    req.user = user_obj;
+                    return next();
+                }
+                else{
+                    res.clearCookie('user', { httpOnly: false });
+                    console.log(`user_obj.email passed cookies for not existing user!`);
+                    return next(new Error(`Incorrect auth data`));
+                }
+            }
+            catch(err){
+                //Executed when there's no cookie or it's corrupted
+                res.clearCookie('user', { httpOnly: false });
+                next(new Error("Something is wrong!"));
+            }
+        }
+    }
+
     static sendIndex(req, res) {
         res.sendFile('index.html', { root: path.join(__dirname, '../public') });
+    }
+
+
+    static checkJSONHeader(req, res, next){
+        if (!req.is('json')) {
+            next(new Error(`Content-Type of HTTP header must be 'application/json'`));
+        }
+        else{
+            next();
+        }
     }
 
     //Checking json body email and password for correct! If it is pass to the next middleware
     //if is not pass to the error handling middleware
     static checkAuthBody(req, res, next) {
-        if (!req.is('json')) {
-            next(new Error(`Content-Type of HTTP header must be 'application/json'`));
-        }
-        else {
-
             if (!req.body.email || !req.body.password) {
                 next(new Error('Incorrect POST request!'));
             }
@@ -71,7 +105,6 @@ class AuthMiddlewares{
             else {
                 next();
             }
-        }
     }
 
     async as_checkAuth(req, res, next) {
@@ -151,6 +184,17 @@ class AuthMiddlewares{
     static sendOk(req, res){
         res.status(200);
         res.json({ message: "Successful action!"});
+    }
+
+    //Save code and return UUID
+    async as_saveCode(req, res, next){
+        try {
+            req.UUID = await this.auth.db.as_setCode(req.body.code, req.user.id, req.compiled.name);
+            return next();
+        }
+        catch(err){
+            next(err);
+        }
     }
 
 }

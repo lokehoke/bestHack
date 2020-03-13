@@ -16,6 +16,7 @@ module.exports = (index) => (async function(){
     //post is valid -> send ok
     //invalid send error
     router.post('/auth',
+        AuthMiddleware.checkJSONHeader,
         AuthMiddleware.checkAuthBody,
         middlewares.as_checkAuth.bind(middlewares),
         AuthMiddleware.setCookie,
