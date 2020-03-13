@@ -15,4 +15,4 @@ COPY public /server/public
 COPY src/db /db
 
 EXPOSE 3000
-CMD sleep 10; node index.js
+CMD sleep 20; node index.js

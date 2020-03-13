@@ -27,9 +27,9 @@ class BestHack {
         this._store.dispatch(setPath(window.location.pathname));
 
         ReactDOM.render(
-           <Provider store={this._store}>
+            <Provider store={this._store}>
                 <App serverFetch={this._serverFetch}/>
-           </Provider>,
+            </Provider>,
             this._mountPoint
         );
 

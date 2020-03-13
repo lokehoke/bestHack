@@ -23,9 +23,9 @@ class Reg extends React.Component {
     _clickEnter(e) {
         e.preventDefault();
 
-        let email  = document.querySelector('#registEmailID');
-        let pass = document.querySelector('#registPassID');
-        let repass = document.querySelector('#registRePassId');
+        let email  = document.querySelector('#registerEmailID');
+        let pass   = document.querySelector('#registerPassID');
+        let repass = document.querySelector('#registerRePassId');
 
         if (email.value === '') {
             this.setState({
@@ -53,7 +53,7 @@ class Reg extends React.Component {
                 kindError: '',
             });
 
-            this.props.serverFetch.registerFetch({
+            this.props.serverFetch.registererFetch({
                 email: email.value,
                 password: pass.value
             }, res => {
@@ -82,18 +82,18 @@ class Reg extends React.Component {
             <div className="auth">
                 <form className="auth-form">
                     <div className="form-group">
-                        <label htmlFor="registEmailID">Логин:</label>
-                        <input type="text" className="form-control" id="registEmailID" aria-describedby="emailHelp"></input>
+                        <label htmlFor="registerEmailID">Логин:</label>
+                        <input type="text" className="form-control" id="registerEmailID" aria-describedby="emailHelp"></input>
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="registPassID">Пароль:</label>
-                        <input type="password" className="form-control" id="registPassID"></input>
+                        <label htmlFor="registerPassID">Пароль:</label>
+                        <input type="password" className="form-control" id="registerPassID"></input>
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="registRePassId">Повторите пароль:</label>
-                        <input type="password" className="form-control" id="registRePassId"></input>
+                        <label htmlFor="registerRePassId">Повторите пароль:</label>
+                        <input type="password" className="form-control" id="registerRePassId"></input>
                     </div>
                     
                     <button className="auth-btn btn btn-primary" onClick={this._clickEnter}>Зарегистрироваться</button>

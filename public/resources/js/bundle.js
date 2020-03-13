@@ -1709,9 +1709,9 @@ var Reg = /*#__PURE__*/function (_React$Component) {
     key: "_clickEnter",
     value: function _clickEnter(e) {
       e.preventDefault();
-      var email = document.querySelector('#registEmailID');
-      var pass = document.querySelector('#registPassID');
-      var repass = document.querySelector('#registRePassId');
+      var email = document.querySelector('#registerEmailID');
+      var pass = document.querySelector('#registerPassID');
+      var repass = document.querySelector('#registerRePassId');
 
       if (email.value === '') {
         this.setState({
@@ -1738,7 +1738,7 @@ var Reg = /*#__PURE__*/function (_React$Component) {
           isError: false,
           kindError: ''
         });
-        this.props.serverFetch.registerFetch({
+        this.props.serverFetch.registererFetch({
           email: email.value,
           password: pass.value
         }, function (res) {
@@ -1791,28 +1791,28 @@ var Reg = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "registEmailID"
+        htmlFor: "registerEmailID"
       }, "\u041B\u043E\u0433\u0438\u043D:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "form-control",
-        id: "registEmailID",
+        id: "registerEmailID",
         "aria-describedby": "emailHelp"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "registPassID"
+        htmlFor: "registerPassID"
       }, "\u041F\u0430\u0440\u043E\u043B\u044C:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         className: "form-control",
-        id: "registPassID"
+        id: "registerPassID"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "registRePassId"
+        htmlFor: "registerRePassId"
       }, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         className: "form-control",
-        id: "registRePassId"
+        id: "registerRePassId"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "auth-btn btn btn-primary",
         onClick: this._clickEnter
