@@ -1,5 +1,6 @@
 'use strict';
 
+process.env.DBDUMP = true; //Remove this
 const dbDump = process.env.DBDUMP || false;
 
 const DBpg = require('./db/DBpg');
