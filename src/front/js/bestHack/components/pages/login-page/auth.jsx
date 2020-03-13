@@ -22,7 +22,7 @@ class Auth extends React.Component {
         e.preventDefault();
 
         let email  = document.querySelector('#authEmailID');
-        let pass = document.querySelector('#authPassID');
+        let pass   = document.querySelector('#authPassID');
 
         if (email.value === '') {
             this.setState({

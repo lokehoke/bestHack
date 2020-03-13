@@ -1,7 +1,7 @@
 'use strict';
 
 process.env.DBDUMP = true; //Remove this
-const dbDump = process.env.DBDUMP || false;
+const dbDump = process.env.DBDUMP || true;
 
 const DBpg = require('./db/DBpg');
 const Auth = require('./auth/Auth');

@@ -12,6 +12,7 @@ services:
             - "5432:5432"
         volumes:
             - ./db_data:/var/lib/postgresql/data
+            - ./src/db:/docker-entrypoint-initdb.d
     server:
         build:
             context: .
@@ -21,4 +22,4 @@ services:
         container_name: "server"
         environment:
             NODE_MODE: "prod"
-            DBDUMP: "false"
+            DBDUMP: "true"

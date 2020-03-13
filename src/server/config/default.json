@@ -11,5 +11,5 @@
     "password": "123"
   },
   "secretKey": "b3W6l0",
-  "dumpName": "db.pgsql"
+  "dumpName": "db.sql"
 }
