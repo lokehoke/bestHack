@@ -12,6 +12,7 @@ module.exports = (index) => (async function(){
 
 
     router.post('/register',
+      AuthMiddleware.checkJSONHeader,
       AuthMiddleware.checkAuthBody,
       middlewares.as_checkUserExist.bind(middlewares),
       middlewares.as_registerUser.bind(middlewares),

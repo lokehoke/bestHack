@@ -28,6 +28,9 @@ const promiseGetRegRouter = require('./routes/register');
 const promiseGetMainRouter = require('./routes/main');
 const promiseGetAdminRouter = require('./routes/admin');
 
+//API
+const promiseGetAlgoCodeRouter = require('./api/routes/algoCode');
+
 async function main() {
     const index = await promiseGetIndexRouter();
     const auth = await promiseGetAuthRouter(index);
@@ -35,12 +38,21 @@ async function main() {
     const main_r = await promiseGetMainRouter(register);
     const admin = await promiseGetAdminRouter(main_r);
 
+    //API
+    const apiAlgoCode = await promiseGetAlgoCodeRouter(admin);
+
     app.use('/', index.router);
     app.use('/auth', auth.router);
     app.use('/register', register.router);
     app.use('/main', main_r.router);
     app.use('/admin', admin.router);
+
+    //API
+    app.use('/algoCode', apiAlgoCode.router);
+
     app.get('*', (req, res) => { res.sendStatus(404); });
+
+
 
     process.on('uncaughtException', async (err) => {
         //close file descriptors
