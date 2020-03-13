@@ -87,6 +87,10 @@ class AuthMiddlewares{
 
     static sendUserObject(req, res) {
         req.user.pass = undefined;
+        req.user.alg = undefined;
+        req.user.count_hash = undefined;
+        req.user.salt= undefined;
+
         res.status(200).json(req.user);
     }
 
