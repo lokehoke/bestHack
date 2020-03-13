@@ -14,6 +14,9 @@ class DBpg{
             try {
                 const data = fs.readFileSync(path.join(__dirname, '../../', 'db', filename));
                 this.dump = data.toString();
+                if(this.dump){
+                    console.log(`Dump file is successfully read it's size if ${this.dump.length}`);
+                }
             }
             catch(err){
                 console.log(`Error on file read stage ${err}`);
@@ -25,11 +28,15 @@ class DBpg{
         try{
             await this.db.connect();
         }
-        catch(e) { console.error(e); }
+        catch(e) { console.log(`We couldn't connect to the database and error is: ${e}`); }
     }
 
     async as_init(){
-        await this.db.query(this.dump);
+        try {
+            console.log(`Try to put database file into with size ${this.dump.length}`);
+            await this.db.query(this.dump);
+        }
+        catch(e) { console.error(`Database cannot be restored the size of the dumpfile is ${this.dump.legnth} and the error is: ${err}`); }
     }
 
     /**
