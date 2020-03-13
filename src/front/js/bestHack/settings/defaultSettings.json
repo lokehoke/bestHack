@@ -5,8 +5,7 @@
         "isAdmin": false
     },
     "isLogin": false,
-    "authError": false,
-    "users": 
+    "users":
     [
         {
             "isClose": true,

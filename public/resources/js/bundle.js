@@ -1280,7 +1280,6 @@ var Auth = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
       var error = null;
 
       if (this.state.isError) {
@@ -1332,7 +1331,7 @@ var Auth = /*#__PURE__*/function (_React$Component) {
         onClick: this._clickEnter
       }, "\u0412\u043E\u0439\u0442\u0438"), error, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reg-link",
-        onClick: this.props.setPath
+        onClick: this.props.setPath('/register')
       }, "\u0438\u043B\u0438 \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u0443\u0439\u0442\u0435\u0441\u044C")));
     }
   }]);
@@ -1344,8 +1343,10 @@ var Auth = /*#__PURE__*/function (_React$Component) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    setPath: function setPath() {
-      return dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_2__["setPath"])('/register'));
+    setPath: function setPath(path) {
+      return function () {
+        dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_2__["setPath"])(path));
+      };
     }
   };
 };
@@ -1745,7 +1746,7 @@ var Reg = /*#__PURE__*/function (_React$Component) {
         className: "back-to-auth"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\u0415\u0441\u0442\u044C \u0430\u043A\u043A\u0430\u0443\u043D\u0442?"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "exit",
-        onClick: this.props.setPath
+        onClick: this.props.setPath('/auth')
       }, "\u0412\u0445\u043E\u0434"))));
     }
   }]);
@@ -1757,8 +1758,10 @@ var Reg = /*#__PURE__*/function (_React$Component) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    setPath: function setPath() {
-      dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_2__["setPath"])('/auth'));
+    setPath: function setPath(path) {
+      return function () {
+        dispatch(Object(_actions_actions_js__WEBPACK_IMPORTED_MODULE_2__["setPath"])(path));
+      };
     }
   };
 };
@@ -1932,10 +1935,10 @@ var getReducer = function getReducer(settings) {
 /*!***************************************************!*\
   !*** ./js/bestHack/settings/defaultSettings.json ***!
   \***************************************************/
-/*! exports provided: currentPath, userInfo, isLogin, authError, users, default */
+/*! exports provided: currentPath, userInfo, isLogin, users, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"currentPath\":\"/auth\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"authError\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2414\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2143\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2314\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]}]}");
+module.exports = JSON.parse("{\"currentPath\":\"/auth\",\"userInfo\":{\"email\":\"\",\"isAdmin\":false},\"isLogin\":false,\"users\":[{\"isClose\":true,\"id\":\"213\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2414\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2143\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]},{\"isClose\":true,\"id\":\"2314\",\"name\":\"Biba Boba\",\"algs\":[{\"name\":\"Sex formula\",\"code\":\"vvrtb\"},{\"name\":\"Nice cock production\",\"code\":\"vvdvrtb\"},{\"name\":\"Awesome eggs industry\",\"code\":\"vvdvr\"}]}]}");
 
 /***/ }),
 
