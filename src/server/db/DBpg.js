@@ -63,6 +63,32 @@ class DBpg{
         return UUID.rows[0].id;
     }
 
+    async as_getUUIDByUser(email){
+        const UUIDS = await this.db.query('select\n' +
+            '\tcode.id\n' +
+            'from\n' +
+            '\tcode\n' +
+            'join\n' +
+            '\tusers\n' +
+            'on\n' +
+            '\tcode.id_user = users.id\n' +
+            'where\n' +
+            '\t\ $1 = users.email\n', [email]);
+        return UUIDS.rows;
+    }
+
+    async as_getAllUsers(){
+        return (await this.db.query('SELECT users.email, users.id FROM users')).rows;
+    }
+
+    async as_getCodesOfUserId(user_id){
+        return (await this.db.query('SELECT code.name, code.code, code.id FROM code WHERE id_user = $1', [user_id])).rows;
+    }
+
+    async as_deleteCodeByUUID(uuid){
+        await this.db.query('DELETE FROM code WHERE id = $1', [uuid]);
+    }
+
     async close(){
         this.db.end();
     }

@@ -16,6 +16,26 @@ module.exports = (index) => (async function(){
         CodeMiddleware.sendUUID,
     );
 
+    //Check cookies -> getUUIDForUser
+    router.get('/algoCode/:user',
+        middlewares.as_APIcookieCheck.bind(middlewares),
+        middlewares.as_getUUIDForUser.bind(middlewares),
+        CodeMiddleware.sendUUID
+    );
+
+    //Check cookies -> collecting all data -> send to admin
+    router.get('/allData',
+        middlewares.as_APIcookieCheck.bind(middlewares),
+        middlewares.as_getAll.bind(middlewares),
+        CodeMiddleware.sendAll
+    );
+
+    router.delete('/algoCode/:UUID/',
+        middlewares.as_APIcookieCheck.bind(middlewares),
+        middlewares.as_deleteCodeByUUID.bind(middlewares),
+        AuthMiddleware.sendOk,
+        );
+
     //Error handler
     router.use((err, req, res, next) => {
         console.log(`Error: ${err.message} on data ${JSON.stringify(req.body)}`);

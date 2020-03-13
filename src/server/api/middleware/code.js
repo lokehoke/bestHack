@@ -74,6 +74,10 @@ class CodeMiddleware{
         console.log(`Sent UUID: ${req.UUID} to the ${req.signedCookies['user']}!`);
     }
 
+    static sendAll(req, res){
+        res.status(200).json(req.allData);
+        console.log(`All data: ${req.allData} were successfully sent to the ${req.user.email}`);
+    }
 
 }
 
