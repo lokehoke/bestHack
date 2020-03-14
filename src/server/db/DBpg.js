@@ -89,8 +89,8 @@ class DBpg{
         await this.db.query('DELETE FROM code WHERE id = $1', [uuid]);
     }
 
-    async _asGetCodeByUUID(uuid){
-        return (await this.db.query('SELECT code.code, code.name FROM code WHERE id = $1', [$uuid])).rows[0];
+    async as_GetCodeByUUID(uuid){
+        return (await this.db.query('SELECT code.code, code.name FROM code WHERE id = $1', [uuid])).rows[0];
     }
 
     async close(){

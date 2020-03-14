@@ -2,7 +2,7 @@
 
 ## run server
 ```bash
-$ ./inin.sh
+$ ./init.sh
 ```
 ## insatll dep
 ```bash
