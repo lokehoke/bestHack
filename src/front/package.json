@@ -16,7 +16,7 @@
   "bootstrap": "^4.4.1",
   "css-loader": "^1.0.x",
   "json-loader": "^0.5.x",
-  "node-sass": "^4.13.x",
+  "node-sass": "^7.0.x",
   "postcss-loader": "^3.0.x",
   "react": "^16.5.x",
   "react-dom": "^16.5.x",
